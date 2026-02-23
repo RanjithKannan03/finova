@@ -61,6 +61,8 @@ class RegisterView(APIView):
 
     def post(self, request):
         username = request.data.get("username")
+        first_name=request.data.get("firstName")
+        last_name=request.data.get("lastName")
         email = request.data.get("email")
         password = request.data.get("password")
 
@@ -70,7 +72,7 @@ class RegisterView(APIView):
         if User.objects.filter(email=email).exists():
             return Response({"error": "Email already exists"}, status=400)
 
-        user = User.objects.create_user(username=username, email=email, password=password)
+        user = User.objects.create_user(username=username, email=email, password=password,first_name=first_name,last_name=last_name)
 
         # Create tokens
         refresh = RefreshToken.for_user(user)
@@ -151,6 +153,8 @@ class MeView(APIView):
         return Response({
             "isAuthenticated":True,
             "username": request.user.username,
+            "firstName":request.user.first_name,
+            "lastName":request.user.last_name,
             "email": request.user.email
         })
 
