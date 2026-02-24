@@ -25,7 +25,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("",HomeView.as_view()),
     path("test/",TestView.as_view()),
-    path("users/",include('users.urls')),
-    path('flat/',include('flats.urls'))
+    path("user/",include('users.urls')),
+    path('flat/',include('flats.urls')),
+    path('transaction/',include('transactions.urls')),
+    path('budgets/',include('budgets.urls'))
 ]
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

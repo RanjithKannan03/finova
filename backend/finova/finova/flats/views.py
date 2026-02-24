@@ -5,7 +5,8 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Flat,Membership
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-
+from budgets.services import create_initial_budget
+from decimal import Decimal
 
 class CreateFlatView(APIView):
     permission_classes = [IsAuthenticated]
@@ -18,6 +19,16 @@ class CreateFlatView(APIView):
         flat_name = request.data.get("flatName")
         if not flat_name:
             return Response({"message":"Flat Name is required"},status=status.HTTP_400_BAD_REQUEST)
+
+        budget_amount = request.data.get("budget")
+        if not budget_amount:
+            return Response({"message": "Budget amount is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            amount = Decimal(str(budget_amount))
+        except Exception:
+            return Response({"message": "Invalid budget amount."}, status=status.HTTP_400_BAD_REQUEST)
+
         with transaction.atomic():
             new_flat = Flat.objects.create(
                 name=flat_name,
@@ -28,6 +39,8 @@ class CreateFlatView(APIView):
                 flat=new_flat,
                 resident=current_user
             )
+
+            create_initial_budget(flat=new_flat,amount=amount)
         return Response({"message":"Created Successfully"},status=status.HTTP_201_CREATED)
 
 class JoinFlatView(APIView):
@@ -89,8 +102,9 @@ class GetFlatInfoView(APIView):
         return Response({
             "flat": {
                 "name": flat.name,
-                "num_residents": flat.num_residents,
-                "is_full": flat.is_full,
+                "numResidents": flat.num_residents,
+                "isFull": flat.is_full,
+                "joinCode":flat.join_code
             },
             "flatmates": [
                 {"username": m.resident.username, "email": m.resident.email}

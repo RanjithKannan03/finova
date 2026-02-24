@@ -8,11 +8,8 @@ from django.db import models
 
 
 def generate_join_code():
-    corpus = string.digits + string.ascii_uppercase
-    while True:
-        code = "".join(random.choices(corpus, k=4))
-        if not Flat.objects.filter(join_code=code).exists():
-            return code
+    code=uuid.uuid4().hex[:4].upper()
+    return code
 
 class Flat(models.Model):
     id=models.UUIDField(
