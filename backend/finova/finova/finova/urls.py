@@ -28,6 +28,7 @@ urlpatterns = [
     path("user/",include('users.urls')),
     path('flat/',include('flats.urls')),
     path('transaction/',include('transactions.urls')),
-    path('budgets/',include('budgets.urls'))
+    path('budgets/',include('budgets.urls')),
+    path('requests/',include('requests.urls')),
 ]
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

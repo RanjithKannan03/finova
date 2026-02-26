@@ -54,6 +54,7 @@ class TransactionCreateSerializer(serializers.ModelSerializer):
 
 class CategoryFilteredTransactionSerializer(serializers.ModelSerializer):
     items = serializers.SerializerMethodField()
+    created_by = UserSerializer(read_only=True)
 
     class Meta:
         model = Transaction
