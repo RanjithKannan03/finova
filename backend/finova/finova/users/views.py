@@ -141,21 +141,25 @@ class RefreshView(APIView):
             value=new_access,
             httponly=True,
             secure=False,
-            samesite="Lax"
+            samesite="Lax",
         )
 
         return response
 
 class MeView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request):
+        # print("Hello")
+        # print(request.COOKIES)
         return Response({
             "isAuthenticated":True,
-            "username": request.user.username,
-            "firstName":request.user.first_name,
-            "lastName":request.user.last_name,
-            "email": request.user.email
+            "user":{
+                "username": request.user.username,
+                "firstName": request.user.first_name,
+                "lastName": request.user.last_name,
+                "email": request.user.email
+            }
         })
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')
