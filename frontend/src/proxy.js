@@ -19,6 +19,7 @@ export async function proxy(request) {
       Authorization: `Bearer ${accessToken}`,
       Cookie: `access_token=${accessToken}`,
     },
+    cache: "no-store",
   });
 
   if (meRes.ok) {
@@ -65,5 +66,6 @@ function redirectToLogin(request) {
 export const config = {
   // matcher: ["/((?!login|api|_next/static|_next/image|favicon.ico).*)"],
   // matcher: "/",
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  // matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/"],
 };

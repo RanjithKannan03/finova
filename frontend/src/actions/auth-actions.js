@@ -219,8 +219,8 @@ export async function register(prevState, formData) {
 export async function logout() {
   const cookieStore = await cookies();
   const csrfToken = cookieStore.get("csrftoken")?.value;
-  const accessToken = request.cookies.get("access_token")?.value;
-  const refreshToken = request.cookies.get("refresh_token")?.value;
+  const accessToken = cookieStore.get("access_token")?.value;
+  const refreshToken = cookieStore.get("refresh_token")?.value;
 
   const res = await fetch(`${BACKEND_URL}/user/logout/`, {
     method: "POST",
@@ -230,7 +230,6 @@ export async function logout() {
       Cookie: `csrftoken=${csrfToken || ""}; access_token=${accessToken || ""}; refresh_token=${refreshToken || ""}`,
       Authorization: `Bearer ${accessToken || ""}`,
     },
-    body: JSON.stringify(payload),
   });
 
   await clearAuthCookies();

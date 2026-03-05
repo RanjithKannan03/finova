@@ -158,7 +158,8 @@ class MeView(APIView):
                 "username": request.user.username,
                 "firstName": request.user.first_name,
                 "lastName": request.user.last_name,
-                "email": request.user.email
+                "email": request.user.email,
+                "profilePic":request.build_absolute_uri(request.user.profile_pic.url),
             }
         })
 
