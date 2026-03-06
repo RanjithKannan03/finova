@@ -14,3 +14,9 @@ export const userStore = create(
     },
   ),
 );
+
+export const flatStore = create((set, get) => ({
+  flat: null,
+  setFlat: (flat) => set({ flat: flat }),
+  clearFlat: () => set({ flat: null }),
+}));

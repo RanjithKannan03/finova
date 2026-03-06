@@ -1,12 +1,18 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { userStore } from "@/zustand/store";
+import React, { useEffect, useState } from "react";
+import { userStore, flatStore } from "@/zustand/store";
 
-const AppInitializer = ({ user, children }) => {
+const AppInitializer = ({ user, flat, children }) => {
+  const [ready, setReady] = useState(false);
+
   useEffect(() => {
     userStore.getState().loginUser(user);
-  }, [user]);
+    flatStore.getState().setFlat(flat);
+    setReady(true);
+  }, [user, flat]);
+
+  if (!ready) return null;
 
   return <>{children}</>;
 };

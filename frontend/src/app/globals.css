@@ -26,3 +26,7 @@
 @utility highlight {
   @apply bg-white/20 backdrop-blur-lg border-white/20;
 }
+
+@utility card {
+  @apply border border-outline bg-foregorund rounded-2xl;
+}

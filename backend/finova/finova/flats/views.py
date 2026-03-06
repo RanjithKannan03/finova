@@ -41,7 +41,23 @@ class CreateFlatView(APIView):
             )
 
             create_initial_budget(flat=new_flat,amount=amount)
-        return Response({"message":"Created Successfully"},status=status.HTTP_201_CREATED)
+
+            flatmates = Membership.objects.select_related("resident").filter(flat=new_flat)
+        return Response({
+            "flat": {
+                "name": new_flat.name,
+                "numResidents": new_flat.num_residents,
+                "isFull": new_flat.is_full,
+                "joinCode": new_flat.join_code,
+                "flatmates": [
+                    {
+                        "username": m.resident.username,
+                        "email": m.resident.email
+                    }
+                    for m in flatmates
+                ]
+            }
+        }, status=status.HTTP_201_CREATED)
 
 class JoinFlatView(APIView):
     permission_classes = [IsAuthenticated]
@@ -67,7 +83,22 @@ class JoinFlatView(APIView):
         # new_membership=Membership(flat=flat,resident=current_user)
         # new_membership.save()
         Membership.objects.create(flat=flat,resident=current_user)
-        return Response({"message": "Joined Successfully"}, status=status.HTTP_201_CREATED)
+        flatmates = Membership.objects.select_related("resident").filter(flat=flat)
+        return Response({
+            "flat": {
+                "name": flat.name,
+                "numResidents": flat.num_residents,
+                "isFull": flat.is_full,
+                "joinCode": flat.join_code,
+                "flatmates": [
+                    {
+                        "username": m.resident.username,
+                        "email": m.resident.email
+                    }
+                    for m in flatmates
+                ]
+            }
+        }, status=status.HTTP_201_CREATED)
 
 class ExitFlatView(APIView):
     permission_classes = [IsAuthenticated]
@@ -104,10 +135,10 @@ class GetFlatInfoView(APIView):
                 "name": flat.name,
                 "numResidents": flat.num_residents,
                 "isFull": flat.is_full,
-                "joinCode":flat.join_code
+                "joinCode":flat.join_code,
+                "flatmates": [
+                    {"username": m.resident.username, "email": m.resident.email}
+                    for m in flatmates
+                ]
             },
-            "flatmates": [
-                {"username": m.resident.username, "email": m.resident.email}
-                for m in flatmates
-            ]
         },status=status.HTTP_200_OK)

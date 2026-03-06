@@ -9,9 +9,9 @@ import { login } from "@/actions/auth-actions";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [state, formAction] = useActionState(login, { error: null });
+  const [state, formAction, isPending] = useActionState(login, { error: null });
   return (
-    <div className="flex w-full lg:w-[40%] xl:w-[30%] flex-col gap-4 p-4 text-white font-montserrat relative">
+    <div className="flex w-full lg:w-[40%] xl:w-[30%] flex-col gap-4 p-4 text-white font-poppins relative">
       <span className="text-3xl font-semibold text-center md:text-4xl lg:text-5xl">
         Login
       </span>

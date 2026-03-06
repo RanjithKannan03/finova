@@ -23,7 +23,6 @@ const UserInfo = () => {
 
   useEffect(() => {
     const u = userStore.getState().user;
-    console.log(u);
     setUser(u);
   }, []);
 

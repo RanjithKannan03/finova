@@ -2,15 +2,21 @@ import React from "react";
 import { verifyAuth } from "@/actions/auth-actions";
 import { redirect } from "next/navigation";
 import AppInitializer from "./AppInitializer";
+import { getFlatInfo } from "@/actions/flat-actions";
 
 const SessionHandler = async ({ children }) => {
-  const res = await verifyAuth();
-  console.log(res.user);
+  let res = await verifyAuth();
   if (!res.isAuthenticated) {
     redirect("/login");
   }
 
-  return <AppInitializer user={res.user}>{children}</AppInitializer>;
+  const response = await getFlatInfo();
+
+  return (
+    <AppInitializer user={res.user} flat={response.flat}>
+      {children}
+    </AppInitializer>
+  );
   // return <>{children}</>;
 };
 
