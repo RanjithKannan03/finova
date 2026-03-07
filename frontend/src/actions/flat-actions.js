@@ -86,7 +86,7 @@ export async function joinFlat(prevState, formData) {
   const data = await res.json();
   if (res.status === 400) {
     return {
-      error: data.error,
+      error: data.message,
     };
   }
   return {

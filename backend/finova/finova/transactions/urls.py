@@ -5,7 +5,8 @@ from .views import (
     UserTransactionListView,
     FlatTransactionListView,
     UserTransactionByCategoryView,
-    FlatActiveMemberTransactionByCategoryView
+    FlatActiveMemberTransactionByCategoryView,
+RecentTransactionsView
 )
 
 urlpatterns = [
@@ -19,4 +20,5 @@ urlpatterns = [
         FlatActiveMemberTransactionByCategoryView.as_view(),
         name="flat_active_member_transactions_by_category"
     ),
+    path('recent-transactions/', RecentTransactionsView.as_view(), name="recent_transactions"),
 ]

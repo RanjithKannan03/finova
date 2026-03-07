@@ -27,7 +27,7 @@ const CreateFlatForm = () => {
     },
   );
   return (
-    <div className="w-full flex flex-col items-center bg-foregorund card gap-10 px-6 py-10 font-poppins">
+    <div className="w-full flex flex-col items-center bg-foreground card gap-10 px-6 py-10 font-poppins">
       <span className="text-center text-3xl font-medium">Create Your Flat</span>
 
       <form
@@ -45,7 +45,7 @@ const CreateFlatForm = () => {
           />
           <label
             htmlFor="floating_outlined_flatName"
-            className="absolute inset-s-1 top-2 z-10 origin-left -translate-y-5 scale-75 transform bg-foregorund px-2  text-white/75 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-5 peer-focus:scale-80 peer-focus:px-2 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  dark:text-white/75 peer-focus:text-white peer-focus:bg-foregorund"
+            className="absolute inset-s-1 top-2 z-10 origin-left -translate-y-5 scale-75 transform bg-foreground px-2  text-white/75 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-5 peer-focus:scale-80 peer-focus:px-2 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  dark:text-white/75 peer-focus:text-white peer-focus:bg-foreground"
           >
             Flat Name
           </label>
@@ -61,7 +61,7 @@ const CreateFlatForm = () => {
           />
           <label
             htmlFor="floating_outlined_budget"
-            className="absolute inset-s-1 top-2 z-10 origin-left -translate-y-5 scale-75 transform bg-foregorund px-2  text-white/75 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-5 peer-focus:scale-80 peer-focus:px-2 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  dark:text-white/75 peer-focus:text-white peer-focus:bg-foregorund"
+            className="absolute inset-s-1 top-2 z-10 origin-left -translate-y-5 scale-75 transform bg-foreground px-2  text-white/75 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-5 peer-focus:scale-80 peer-focus:px-2 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  dark:text-white/75 peer-focus:text-white peer-focus:bg-foreground"
           >
             Initial Budget
           </label>

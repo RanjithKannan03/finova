@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { Flip } from "gsap/all";
 import { useGSAP } from "@gsap/react";
+import { flatStore } from "@/zustand/store";
 
 gsap.registerPlugin(Flip);
 
@@ -15,6 +16,13 @@ const NavLinks = ({ navLinks }) => {
   const linksRef = useRef([]);
 
   const isFirstRender = useRef(true);
+
+  const [flat, setFlat] = useState(null);
+
+  useEffect(() => {
+    const f = flatStore.getState().flat;
+    setFlat(f);
+  });
 
   // useGSAP(() => {
   //   const activeIndex = navLinks.findIndex((link) => link.url === path);
@@ -79,7 +87,7 @@ const NavLinks = ({ navLinks }) => {
   }, [path]);
 
   return (
-    <div className="flex rounded-full shadow-2xl drop-shadow-2xl bg-foregorund px-8 border border-outline gap-5 py-2 font-poppins items-center">
+    <div className="flex rounded-full shadow-2xl drop-shadow-2xl bg-foreground px-8 border border-outline gap-5 py-2 font-poppins items-center">
       <div
         ref={highlightRef}
         className="absolute inset-0 w-full h-full z-[-99] rounded-full nav-pill opacity-0"

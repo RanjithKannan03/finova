@@ -2,7 +2,7 @@
 
 @theme {
   --color-background: #0d0d14;
-  --color-foregorund: #1b1a1f;
+  --color-foreground: #1b1a1f;
   --color-textPrimary: #fff;
   --color-outline: #39393f;
   --font-noto-jp: var(--font-noto-jp);
@@ -28,5 +28,5 @@
 }
 
 @utility card {
-  @apply border border-outline bg-foregorund rounded-2xl;
+  @apply border border-outline bg-foreground rounded-2xl;
 }

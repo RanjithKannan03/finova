@@ -1,6 +1,6 @@
 import "../globals.css";
 import SessionHandler from "@/components/SessionHandler";
-import Navbar from "@/components/Navbar";
+import Navbar_NoFlat from "@/components/Navbar_NoFlat";
 
 export const metadata = {
   title: "Finova",
@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
     <SessionHandler>
       <main className="max-w-screen h-screen w-screen bg-background">
         <div className="w-screen h-20">
-          <Navbar />
+          <Navbar_NoFlat />
         </div>
 
         <div className="h-[calc(100vh-5rem)] w-screen">{children}</div>

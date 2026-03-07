@@ -64,3 +64,10 @@ class CategoryFilteredTransactionSerializer(serializers.ModelSerializer):
         category = self.context.get('category')
         filtered_items = obj.items.filter(category=category)
         return TransactionItemSerializer(filtered_items, many=True).data
+
+class RecentTransactionSerializer(serializers.ModelSerializer):
+    created_by = serializers.CharField(source='created_by.username')
+
+    class Meta:
+        model = Transaction
+        fields = ['created_at', 'total_amount', 'created_by']

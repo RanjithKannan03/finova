@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import TransactionItem
 from users.models import User
 from rest_framework.response import Response
-from .serializers import TransactionSerializer,CategoryFilteredTransactionSerializer,TransactionCreateSerializer
+from .serializers import TransactionSerializer,CategoryFilteredTransactionSerializer,TransactionCreateSerializer,RecentTransactionSerializer
 from datetime import datetime
 from datetime import date
 from budgets.models import Budget
@@ -218,4 +218,28 @@ class UserTransactionByCategoryView(APIView):
 
         transactions = transactions.order_by('-created_at').select_related('created_by').prefetch_related('items')
         serializer = CategoryFilteredTransactionSerializer(transactions, many=True, context={'request': request, 'category': category})
+        return Response({"transactions": serializer.data})
+
+
+class RecentTransactionsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        current_user = request.user
+
+        membership = current_user.memberships.filter(is_active=True).first()
+        if not membership:
+            return Response({"message": "You are not in a flat."}, status=status.HTTP_400_BAD_REQUEST)
+
+        flat = membership.flat
+        transactions = (
+            flat.transactions
+            .order_by('-created_at')
+            .select_related('created_by')[:10]
+        )
+
+        if not transactions:
+            return Response({"message": "No transactions found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = RecentTransactionSerializer(transactions, many=True,context={'request': request})
         return Response({"transactions": serializer.data})

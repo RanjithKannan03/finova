@@ -1,33 +1,11 @@
 import React from "react";
-import NavLinks from "./NavLinks";
 import UserInfo from "./UserInfo";
 import { logout } from "@/actions/auth-actions";
 
-const navLinks = [
-  {
-    name: "Home",
-    url: "/",
-  },
-  {
-    name: "New Expense",
-    url: "/add",
-  },
-  {
-    name: "Analytics",
-    url: "/analytics",
-  },
-  {
-    name: "Requests",
-    url: "/requests",
-  },
-];
-
-const Navbar = () => {
+const Navbar_NoFlat = () => {
   return (
     <nav className="w-full h-full px-4 md:px-8 lg:px-20 xl:px-32">
-      <div className="flex w-full justify-between items-end h-full text-textPrimary">
-        <NavLinks navLinks={navLinks} />
-
+      <div className="flex w-full justify-end items-end h-full text-textPrimary">
         <div className="flex py-3 gap-10 items-center">
           <UserInfo />
 
@@ -43,4 +21,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar_NoFlat;

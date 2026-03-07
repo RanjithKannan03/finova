@@ -27,7 +27,7 @@ const UserInfo = () => {
   }, []);
 
   return (
-    <div className="flex w-40 h-9 bg-foregorund border border-outline drop-shadow-2xl shadow-2xl rounded-full items-center justify-end px-2 relative">
+    <div className="flex w-40 h-9 bg-foreground border border-outline drop-shadow-2xl shadow-2xl rounded-full items-center justify-end px-2 relative">
       {user && (
         <div
           id="profile-pic"
