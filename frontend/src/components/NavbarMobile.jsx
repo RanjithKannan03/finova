@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const NavbarMobile = ({ navLinks }) => {
   const [open, setOpen] = useState(false);
@@ -42,7 +43,7 @@ const NavbarMobile = ({ navLinks }) => {
   }, [open]);
 
   return (
-    <div ref={container}>
+    <div className="" ref={container}>
       {/* Hamburger */}
       <button
         onClick={() => setOpen((prev) => !prev)}
@@ -92,9 +93,19 @@ const NavbarMobile = ({ navLinks }) => {
         {/* Bottom divider + index */}
         <div className="mt-auto px-6 pb-10 flex flex-col gap-4">
           <div className="h-px bg-outline/50" />
-          <p className="text-xs self-center uppercase tracking-[0.2em] text-textPrimary/70">
-            Finova
-          </p>
+          <div className="flex self-center items-center gap-2">
+            <div className="w-9 aspect-square relative">
+              <Image
+                src="/logo.png"
+                alt="logo"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/70">
+              Finova
+            </p>
+          </div>
         </div>
       </div>
     </div>

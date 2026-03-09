@@ -50,7 +50,7 @@ const BudgetDonut = async () => {
 
       {/* Donut */}
       <div
-        className="relative w-full h-3/4 outline-none focus:outline-none"
+        className="relative w-full h-[20vh] md:h-3/4 outline-none focus:outline-none"
         // style={{ outline: "none" }}
       >
         <BudgetDonutComponent data={data} COLORS={COLORS} />

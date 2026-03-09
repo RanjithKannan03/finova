@@ -27,7 +27,7 @@ const navLinks = [
 const Navbar = () => {
   return (
     <nav className="w-full h-full px-4 md:px-8 lg:px-20 xl:px-32">
-      <div className="flex w-full justify-between items-center xl:items-end h-full text-textPrimary">
+      <div className="flex w-full relative justify-between items-center xl:items-end h-full text-textPrimary">
         <NavLinks navLinks={navLinks} />
         <NavbarMobile navLinks={navLinks} />
 
