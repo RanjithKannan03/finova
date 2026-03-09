@@ -54,7 +54,7 @@ export const RecentTransactionsNotEmpty = ({ transactions }) => {
 
               {/* User pill */}
               <div className="flex justify-center">
-                <span className="text-sm px-2 py-0.5 rounded-full bg-white/[0.06] border border-outline text-textPrimary/50 truncate max-w-[80px]">
+                <span className="text-sm px-2 py-0.5 rounded-full bg-white/6 border border-outline text-textPrimary/50 truncate max-w-20">
                   {tx.created_by}
                 </span>
               </div>
@@ -69,6 +69,7 @@ export const RecentTransactionsNotEmpty = ({ transactions }) => {
           );
         })}
       </div>
+      <div className="w-full h-px bg-outline" />
     </>
   );
 };

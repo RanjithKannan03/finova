@@ -4,11 +4,11 @@ import { cookies } from "next/headers";
 
 const BACKEND_URL = process.env.BACKEND_URL;
 
-export async function getRecentTransations() {
+export async function getRecentRequests() {
   const cookieStore = await cookies();
   const accessToken = cookieStore.get("access_token")?.value;
 
-  const res = await fetch(`${BACKEND_URL}/transaction/recent-transactions/`, {
+  const res = await fetch(`${BACKEND_URL}/requests/list-recent/?filter=false`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${accessToken}`,
@@ -23,7 +23,7 @@ export async function getRecentTransations() {
   }
   const data = await res.json();
   if (data) {
-    return data;
+    return data.requests;
   }
   return null;
 }

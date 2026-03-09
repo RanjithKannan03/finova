@@ -5,9 +5,6 @@ import { RecentTransactionsNotEmpty } from "./RecentTransactionsNotEmpty";
 
 const RecentTransactions = async () => {
   const res = await getRecentTransations();
-  console.log(res);
-
-  // const transactions = [
   //   {
   //     created_at: "2026-03-07T20:47:49.155624Z",
   //     total_amount: "2.52",
@@ -61,47 +58,21 @@ const RecentTransactions = async () => {
   // ];
 
   return (
-    <div className="h-full w-1/3 card py-8 rounded-4xl font-poppins overflow-hidden relative">
-      {/* Subtle top edge highlight */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)",
-        }}
-      />
-
+    <div className="h-full w-full card pb-8  font-poppins overflow-hidden relative">
       <div className="flex h-full w-full flex-col pt-8 px-7 gap-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
             <p
-              className="text-sm font-medium uppercase tracking-widest text-textPrimary/30"
+              className="text-xs font-medium uppercase tracking-widest text-textPrimary/30"
               style={{ letterSpacing: "0.15em" }}
             >
               Activity
             </p>
-            <h1 className="text-base font-semibold mt-0.5 text-textPrimary/90">
+            <h1 className="text-lg font-semibold mt-0.5 text-textPrimary/90">
               Recent Transactions
             </h1>
           </div>
-          {/* <button
-            className="flex items-center justify-center w-8 h-8 rounded-xl transition-all duration-200 
-                         bg-white/5 border border-outline hover:bg-white/10 text-textPrimary/40"
-          >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="12" cy="12" r="1" />
-              <circle cx="19" cy="12" r="1" />
-              <circle cx="5" cy="12" r="1" />
-            </svg>
-          </button> */}
         </div>
 
         {/* Divider */}

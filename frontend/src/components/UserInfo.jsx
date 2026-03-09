@@ -24,14 +24,17 @@ const UserInfo = () => {
   useEffect(() => {
     const u = userStore.getState().user;
     setUser(u);
+
+    const unsub = userStore.subscribe((state) => setUser(state.user));
+    return () => unsub();
   }, []);
 
   return (
-    <div className="flex w-40 h-9 bg-foreground border border-outline drop-shadow-2xl shadow-2xl rounded-full items-center justify-end px-2 relative">
+    <div className="flex w-30 md:w-40 h-9 bg-foreground border border-outline drop-shadow-2xl shadow-2xl rounded-full items-center justify-end px-2 relative">
       {user && (
         <div
           id="profile-pic"
-          className="w-14 border border-outline aspect-square rounded-full absolute left-0 bg-gray-300"
+          className="w-10 md:w-14 border border-outline aspect-square rounded-full absolute left-0 bg-gray-300"
         >
           <Image
             src={user.profilePic}
@@ -42,7 +45,7 @@ const UserInfo = () => {
         </div>
       )}
       {user && (
-        <p className="py-1 px-2 max-w-26 w-26 text-end font-poppins truncate">
+        <p className="py-1 px-2 w-20 max-w-20 text-sm md:text-base md:max-w-26 md:w-26 text-end font-poppins truncate">
           {user.username}
         </p>
       )}

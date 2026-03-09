@@ -15,7 +15,8 @@ export async function getFlatInfo() {
       Authorization: `Bearer ${accessToken}`,
       Cookie: `access_token=${accessToken}`,
     },
-    cache: "no-store",
+    // cache: "no-store",
+    next: { revalidate: 900 },
   });
 
   if (res.status == 400) {

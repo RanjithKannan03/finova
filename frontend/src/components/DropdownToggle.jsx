@@ -45,8 +45,8 @@ const DropdownToggle = ({ form, setForm }) => {
       className="w-full absolute z-20 shadow-2xl drop-shadow-2xl"
       ref={containerRef}
     >
-      <div className="px-3 flex flex-col w-full bg-foreground card rounded-2xl font-poppins">
-        <div className="flex  items-center w-full justify-between ">
+      <div className="px-3 flex flex-col w-full bg-foreground card items-center rounded-2xl font-poppins">
+        <div className="flex text-sm md:text-base  items-center w-full justify-between ">
           <p>{form}</p>
           <button
             onClick={() => setOpen((prev) => !prev)}

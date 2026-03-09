@@ -47,7 +47,7 @@ class ListRequestsView(APIView):
 
         if filter:
             requests=requests.filter(status=status_filter)
-        requests=requests.order_by('-created_date')
+        requests=requests.order_by('-created_on').select_related('created_by')
         serializer = RequestListSerializer(requests, many=True,context={'request':request})
         return Response({"requests": serializer.data})
 
@@ -55,12 +55,12 @@ class GetRequestView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self,request):
-        request_id=get_object_or_404(Request,request_id='requestID')
+        request_id=get_object_or_404(Request,request_id='id')
         if not request_id:
             return Response({"message": "Request id is required"}, status=status.HTTP_400_BAD_REQUEST)
 
 
-        request=Request.objects.get(id=request_id)
+        request=Request.objects.get(id=request_id).prefetch_related('votes').select_related('created_by')
         serializer = RequestSerializer(request,context={'request':request})
         return Response({"request": serializer.data,"votedClosed":timezone.now() > request.expires_at})
 
@@ -114,6 +114,29 @@ class AdminMarkRequestView(APIView):
         request.finalize()
 
         return Response({"message": "Marked"}, status=status.HTTP_201_CREATED)
+
+
+class ListRecentRequestsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self,request):
+        current_user = request.user
+        membership = current_user.memberships.filter(is_active=True).first()
+
+        filter = request.query_params.get('filter','').lower()=='true'
+        status_filter=request.query_params.get('status','').upper()
+
+        if not membership:
+            return Response({"message": "You are not in a flat."}, status=status.HTTP_400_BAD_REQUEST)
+
+        flat=membership.flat
+        requests=flat.requests.all()
+
+        if filter:
+            requests=requests.filter(status=status_filter)
+        requests=requests.order_by('-created_on').select_related('created_by')[:5]
+        serializer = RequestListSerializer(requests, many=True,context={'request':request})
+        return Response({"requests": serializer.data})
 
 
 
