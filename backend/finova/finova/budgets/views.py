@@ -10,8 +10,8 @@ from datetime import datetime
 
 
 def parse_date_range(request):
-    start_period = request.query_params.get("start_period")
-    end_period = request.query_params.get("end_period")
+    start_period = request.query_params.get("start_date")
+    end_period = request.query_params.get("end_date")
     if not start_period or not end_period:
         return None,None,None,None,Response({"message": "start_date and end_date are required."}, status=status.HTTP_400_BAD_REQUEST)
     try:

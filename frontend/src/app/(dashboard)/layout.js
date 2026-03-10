@@ -10,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <SessionHandler>
-      <main className="max-w-screen h-screen w-screen bg-background">
+      <main className="h-screen  w-screen bg-background overflow-y-scroll">
         <div className="w-screen h-20">
           <Navbar />
         </div>

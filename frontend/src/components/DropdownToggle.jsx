@@ -9,7 +9,7 @@ const DropdownToggle = ({ form, setForm }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
   const dropRef = useRef(null);
-  const iconRef = useRef(null); // Let's animate the arrow too!
+  const iconRef = useRef(null);
 
   useGSAP(
     () => {

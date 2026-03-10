@@ -88,7 +88,7 @@ class FlatActiveMemberTransactionListView(APIView):
             return Response({"message": "You are not in a flat."}, status=status.HTTP_400_BAD_REQUEST)
 
         flat = membership.flat
-        active_members = flat.memberships.filter(is_active=True).values_list('user', flat=True)
+        active_members = flat.memberships.filter(is_active=True).values_list('resident', flat=True)
         transactions = flat.transactions.filter(created_by__in=active_members)
 
         if filter_by_date:
@@ -97,7 +97,7 @@ class FlatActiveMemberTransactionListView(APIView):
                 return error
             transactions = transactions.filter(created_at__date__gte=start_date, created_at__date__lte=end_date)
 
-        transactions = transactions.order_by('-created_at').select_related('created_by').prefetch_realetd('items')
+        transactions = transactions.order_by('-created_at').select_related('created_by').prefetch_related('items')
         serializer = TransactionSerializer(transactions, many=True, context={'request': request})
         return Response({"transactions": serializer.data})
 
@@ -161,7 +161,7 @@ class FlatActiveMemberTransactionByCategoryView(APIView):
             return Response({"message": "You are not in a flat."}, status=status.HTTP_400_BAD_REQUEST)
 
         flat = membership.flat
-        active_members = flat.memberships.filter(is_active=True).values_list('user', flat=True)
+        active_members = flat.memberships.filter(is_active=True).values_list('resident', flat=True)
         transactions = flat.transactions.filter(created_by__in=active_members, items__category=category).distinct()
 
         if filter_by_date:

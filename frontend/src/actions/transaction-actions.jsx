@@ -73,3 +73,46 @@ export async function createTransaction(prevState, formData) {
 
   return redirect("/");
 }
+
+export async function fetchTransactions({
+  month,
+  year,
+  scope,
+  userEmail,
+  category,
+}) {
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get("access_token")?.value;
+  const csrfToken = cookieStore.get("csrftoken")?.value;
+
+  const start = `${year}-${String(month).padStart(2, "0")}-01`;
+  const end = `${year}-${String(month).padStart(2, "0")}-${new Date(year, month, 0).getDate()}`;
+
+  let url;
+  if (category) {
+    url =
+      scope === "specific"
+        ? `${BACKEND_URL}/transaction/user-transactions-by-category?email=${encodeURIComponent(userEmail)}&category=${category}&filterByDate=true&start_date=${start}&end_date=${end}`
+        : `${BACKEND_URL}/transaction/flat-active-member-transactions-by-category/?category=${category}&filterByDate=true&start_date=${start}&end_date=${end}`;
+  } else {
+    url =
+      scope === "specific"
+        ? `${BACKEND_URL}/transaction/user-transactions/?email=${encodeURIComponent(userEmail)}&filterByDate=true&start_date=${start}&end_date=${end}`
+        : `${BACKEND_URL}/transaction/flat-active-member-transactions/?filterByDate=true&start_date=${start}&end_date=${end}`;
+  }
+
+  const res = await fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "X-CSRFToken": csrfToken || "",
+      Cookie: `access_token=${accessToken}`,
+    },
+    cache: "no-store",
+  });
+  const data = await res.json();
+  if (data) {
+    return data;
+  }
+  return null;
+}
