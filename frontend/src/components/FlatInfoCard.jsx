@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { flatStore } from "@/zustand/store";
+import Image from "next/image";
 
 const SkeletonBlock = ({ className }) => (
   <div className={`rounded-lg bg-white/5 animate-pulse ${className}`} />
@@ -170,10 +171,17 @@ const FlatInfoCard = () => {
                 )}
                 {mate ? (
                   <>
-                    <div className="w-6 aspect-square rounded-lg bg-white/[0.07] border border-outline flex items-center justify-center shrink-0">
-                      <span className="text-[10px] font-semibold text-textPrimary/60 uppercase">
+                    <div className="w-6 relative aspect-square rounded-lg bg-white/[0.07] border border-outline flex items-center justify-center shrink-0">
+                      {/* <span className="text-[10px] font-semibold text-textPrimary/60 uppercase">
                         {mate.username[0]}
-                      </span>
+                      </span> */}
+                      <Image
+                        src={mate.profile_pic}
+                        className="object-contain rounded-lg"
+                        fill
+                        sizes="100"
+                        alt="avatar"
+                      />
                     </div>
                     <div className="flex flex-col min-w-0">
                       <span className="text-sm font-medium text-textPrimary/80 truncate">

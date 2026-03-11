@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 
 const TransactionRow = ({ tx }) => {
   const [expanded, setExpanded] = useState(false);
@@ -67,10 +68,14 @@ const TransactionRow = ({ tx }) => {
       />
 
       <div className="flex items-center gap-3 px-4 py-2.5 relative z-10">
-        <div className="w-7 h-7 rounded-lg bg-white/6 border border-outline flex items-center justify-center shrink-0">
-          <span className="text-[10px] lg:text-xs font-bold text-textPrimary/50 uppercase">
-            {tx.created_by.username[0]}
-          </span>
+        <div className="w-7 aspect-square relative rounded-lg bg-white/6 border border-outline flex items-center justify-center shrink-0">
+          <Image
+            src={tx.created_by.profile_pic}
+            alt="avatar"
+            fill
+            sizes="100"
+            className="object-contain rounded-lg"
+          />
         </div>
         <div className="flex flex-col min-w-0 flex-1">
           <span className="text-xs font-medium text-textPrimary/80 truncate">

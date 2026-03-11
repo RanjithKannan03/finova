@@ -54,15 +54,23 @@ class ListRequestsView(APIView):
 class GetRequestView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get(self,request):
-        request_id=get_object_or_404(Request,request_id='id')
-        if not request_id:
+    def get(self, request):
+        id = request.query_params.get('id')
+
+        if not id:
             return Response({"message": "Request id is required"}, status=status.HTTP_400_BAD_REQUEST)
 
+        req = get_object_or_404(
+            Request.objects.prefetch_related('votes').select_related('created_by'),
+            request_id=id
+        )
 
-        request=Request.objects.get(id=request_id).prefetch_related('votes').select_related('created_by')
-        serializer = RequestSerializer(request,context={'request':request})
-        return Response({"request": serializer.data,"votedClosed":timezone.now() > request.expires_at})
+        serializer = RequestSerializer(req, context={'request': request})
+
+        return Response({
+            "request": serializer.data,
+            "votesClosed": timezone.now() > req.expiry_date
+        })
 
 
 class CastVote(APIView):

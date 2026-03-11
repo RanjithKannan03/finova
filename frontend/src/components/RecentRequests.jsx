@@ -1,4 +1,5 @@
 import { getRecentRequests } from "@/actions/request-actions";
+import Image from "next/image";
 import React from "react";
 
 const RecentRequests = async () => {
@@ -109,20 +110,18 @@ const RecentRequests = async () => {
                 borderColor: "rgba(57,57,63,0.8)",
               }}
             >
-              {/* Spotlight */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(ellipse 80% 100% at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%)",
-                }}
-              />
-
               {/* Avatar */}
-              <div className="w-6 h-6 rounded-lg bg-white/[0.07] border border-outline flex items-center justify-center shrink-0">
-                <span className="text-[10px] font-semibold text-textPrimary/60 uppercase">
+              <div className="w-6 aspect-square relative rounded-lg bg-white/[0.07] border border-outline flex items-center justify-center shrink-0">
+                {/* <span className="text-[10px] font-semibold text-textPrimary/60 uppercase">
                   {req.created_by.username[0]}
-                </span>
+                </span> */}
+                <Image
+                  src={req.created_by.profile_pic}
+                  fill
+                  className="object-contain rounded-lg"
+                  sizes="100"
+                  alt="avatar"
+                />
               </div>
 
               {/* Name + user */}

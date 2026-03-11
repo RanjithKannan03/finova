@@ -136,8 +136,9 @@ class GetFlatInfoView(APIView):
                 "numResidents": flat.num_residents,
                 "isFull": flat.is_full,
                 "joinCode":flat.join_code,
+                "admin": flat.created_by.email,
                 "flatmates": [
-                    {"username": m.resident.username, "email": m.resident.email}
+                    {"username": m.resident.username, "email": m.resident.email,"profile_pic":request.build_absolute_uri(m.resident.profile_pic.url)}
                     for m in flatmates
                 ]
             },
