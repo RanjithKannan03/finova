@@ -10,7 +10,8 @@ from datetime import timedelta
 # Create your models here.
 
 def default_expiry_date():
-    return timezone.now()+timedelta(days=30)
+    return timezone.now() + timedelta(minutes=1)
+    # return timezone.now()+timedelta(days=30)
 
 class Request(models.Model):
 
@@ -35,7 +36,7 @@ class Request(models.Model):
         return self.votes.filter(choice=Vote.VoteChoice.REJECT).count()
 
     def can_be_finalized(self):
-        return timezone.now() >= self.expires_at and self.status == self.Status.PENDING
+        return timezone.now() >= self.expiry_date and self.status == self.Status.PENDING
 
     def finalize(self):
         if not self.can_be_finalized():

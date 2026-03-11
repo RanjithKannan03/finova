@@ -78,7 +78,7 @@ class CastVote(APIView):
 
     def post(self,request):
         current_user = request.user
-        request_id=request.data.get('requestID')
+        request_id=request.data.get('id')
         choice=request.data.get('choice')
         if not request_id:
             return Response({"message": "Request id is required"}, status=status.HTTP_400_BAD_REQUEST)
@@ -86,7 +86,7 @@ class CastVote(APIView):
         if not choice:
             return Response({"message": "Choice is required"}, status=status.HTTP_400_BAD_REQUEST)
 
-        request_obj = get_object_or_404(Request, id=request_id)
+        request_obj = get_object_or_404(Request, request_id=request_id)
 
         membership = current_user.memberships.filter(flat=request_obj.flat,is_active=True).first()
 
@@ -96,12 +96,12 @@ class CastVote(APIView):
         if Vote.objects.filter(request=request_obj, cast_by=current_user).exists():
             return Response({"message": "Already voted"},status=status.HTTP_400_BAD_REQUEST)
 
-        if timezone.now() > request_obj.expires_at:
+        if timezone.now() > request_obj.expiry_date:
             return Response({"message": "Voting closed"},status=status.HTTP_400_BAD_REQUEST)
 
-        request=Request.objects.get(id=request_id)
 
-        Vote.objects.create(request=request,cast_by=current_user,choice=choice)
+
+        Vote.objects.create(request=request_obj,cast_by=current_user,choice=choice)
         return Response({"message": "Cast Successfully"}, status=status.HTTP_201_CREATED)
 
 class AdminMarkRequestView(APIView):
@@ -109,11 +109,11 @@ class AdminMarkRequestView(APIView):
 
     def post(self,request):
         current_user = request.user
-        request_id=request.data.get('requestID')
+        request_id=request.data.get('id')
         if not request_id:
             return Response({"message": "Request id is required"}, status=status.HTTP_400_BAD_REQUEST)
 
-        request=get_object_or_404(Request,request_id='requestID')
+        request=get_object_or_404(Request,request_id=request_id)
 
         is_admin=current_user.email==request.flat.created_by.email
         if not is_admin:

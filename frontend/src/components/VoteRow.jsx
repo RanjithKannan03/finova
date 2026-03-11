@@ -1,5 +1,6 @@
 import React from "react";
 import { fmt } from "@/lib/date-helpers";
+import Image from "next/image";
 
 const VoteRow = ({ vote, VOTE_MAP }) => {
   const meta = VOTE_MAP[vote.choice];
@@ -18,10 +19,14 @@ const VoteRow = ({ vote, VOTE_MAP }) => {
             "radial-gradient(ellipse 80% 100% at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%)",
         }}
       />
-      <div className="w-6 h-6 rounded-lg bg-white/6 border border-outline flex items-center justify-center shrink-0">
-        <span className="text-xs font-bold text-textPrimary/50 uppercase">
-          {vote.cast_by.username[0]}
-        </span>
+      <div className="w-6 aspect-square relative rounded-lg bg-white/6 border border-outline flex items-center justify-center shrink-0">
+        <Image
+          src={vote.cast_by.profile_pic}
+          fill
+          className="rounded-lg object-contain"
+          sizes="100"
+          alt="avatar"
+        />
       </div>
       <div className="flex flex-col min-w-0 flex-1">
         <span className="text-xs font-medium text-textPrimary/75 truncate">

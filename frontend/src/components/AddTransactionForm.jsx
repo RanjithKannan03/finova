@@ -2,8 +2,7 @@
 
 import React, { useActionState, useState } from "react";
 import SubmitButton from "./SubmitButton";
-import { FiPlus } from "react-icons/fi";
-import { RxCross2 } from "react-icons/rx";
+import { TiTimes, TiPlus } from "react-icons/ti";
 import { createTransaction } from "@/actions/transaction-actions";
 
 const CATEGORIES = [
@@ -88,7 +87,7 @@ const AddTransactionForm = () => {
                      bg-white/6 border border-outline text-textPrimary/60
                      hover:bg-white/10 hover:text-textPrimary/80 transition-all duration-150 active:scale-95"
         >
-          <FiPlus className="text-sm md:text-lg" />
+          <TiPlus className="text-sm md:text-lg" />
           Add Item
         </button>
       </div>
@@ -190,7 +189,7 @@ const AddTransactionForm = () => {
                            border border-outline/30 md:w-6 md:h-6 md:border-none
                            transition-all duration-150 disabled:opacity-20 disabled:cursor-not-allowed"
               >
-                <RxCross2 className="text-lg" />
+                <TiTimes className="text-lg" />
               </button>
             </div>
           );

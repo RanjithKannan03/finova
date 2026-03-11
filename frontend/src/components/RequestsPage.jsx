@@ -88,7 +88,7 @@ const RequestsPage = ({ requests = [] }) => {
               <span className="opacity-60">{counts[key] ?? 0}</span>
             </button>
           ))}
-          <span className="text-xs text-textPrimary/25 ml-auto">
+          <span className="text-xs text-textPrimary/60 ml-auto">
             {requests.length} total
           </span>
         </div>
@@ -97,12 +97,12 @@ const RequestsPage = ({ requests = [] }) => {
       {/* ── List ── */}
       <div className="card px-6 py-6 relative overflow-hidden">
         <div className="flex items-center justify-between mb-4">
-          <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
+          <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/60">
             {filter === "ALL"
               ? "All Requests"
               : `${STATUS_MAP[filter]?.label} Requests`}
           </p>
-          <span className="text-xs text-textPrimary/25">
+          <span className="text-xs text-textPrimary/60">
             {sorted.length} shown
           </span>
         </div>

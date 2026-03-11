@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { FaAngleDown } from "react-icons/fa";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -54,7 +54,7 @@ const DropdownToggle = ({ form, setForm }) => {
           >
             {/* Wrapped the icon in a div with a ref so we can rotate it */}
             <div ref={iconRef}>
-              <MdKeyboardArrowDown className="text-xl" />
+              <FaAngleDown className="text-xl" />
             </div>
           </button>
         </div>

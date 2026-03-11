@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { FaAngleDown } from "react-icons/fa";
 
 const Dropdown = ({ value, options, onChange }) => {
   const [open, setOpen] = useState(false);
@@ -58,7 +58,7 @@ const Dropdown = ({ value, options, onChange }) => {
       >
         {selected?.label ?? value}
         <div ref={iconRef}>
-          <MdKeyboardArrowDown className="text-sm text-textPrimary/40" />
+          <FaAngleDown className="text-sm text-textPrimary/40" />
         </div>
       </button>
       <div

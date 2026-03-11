@@ -20,6 +20,7 @@ import { flatStore } from "@/zustand/store";
 import TransactionSkeleton from "./TransactionSkeleton";
 import ChartSkeleton from "./ChartSkeleton";
 import TransactionRow from "./TransactionRow";
+import { FaAngleRight, FaAngleLeft, FaAngleDown } from "react-icons/fa";
 
 const CATEGORIES = {
   GR: { label: "Groceries", color: "rgba(52,211,153,0.9)" },
@@ -246,19 +247,10 @@ const Analytics = () => {
         <div className="flex items-center gap-1">
           <button
             onClick={prevMonth}
-            className="w-7 h-7 flex items-center justify-center rounded-lg bg-white/5 border border-outline
+            className="w-7 h-7 cursor-pointer flex items-center justify-center rounded-lg bg-white/5 border border-outline
                        text-textPrimary/50 hover:bg-white/9 transition-all duration-150"
           >
-            <svg
-              width="10"
-              height="10"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-            >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
+            <FaAngleLeft />
           </button>
           <span className="text-xs font-medium text-textPrimary/60 min-w-25 text-center">
             {monthLabel}
@@ -266,27 +258,18 @@ const Analytics = () => {
           <button
             onClick={nextMonth}
             disabled={isCurrentMonth}
-            className="w-7 h-7 flex items-center justify-center rounded-lg bg-white/5 border border-outline
+            className="w-7 h-7 cursor-pointer flex items-center justify-center rounded-lg bg-white/5 border border-outline
                        text-textPrimary/50 hover:bg-white/9 transition-all duration-150
                        disabled:opacity-30 disabled:cursor-not-allowed"
           >
-            <svg
-              width="10"
-              height="10"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-            >
-              <path d="M9 18l6-6-6-6" />
-            </svg>
+            <FaAngleRight />
           </button>
         </div>
       </div>
 
       {/* ── Chart ── */}
-      <div className="card px-6 py-6 relative overflow-hidden">
-        <div className="flex items-start justify-between mb-4">
+      <div className="card  py-6 relative overflow-hidden">
+        <div className="flex px-6 items-start justify-between mb-4">
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
               {dataType === "budgets"
@@ -303,13 +286,13 @@ const Analytics = () => {
             {loading && (
               <div className="w-3 h-3 rounded-full border border-textPrimary/20 border-t-textPrimary/60 animate-spin" />
             )}
-            <span className="text-xs text-textPrimary/30">{monthLabel}</span>
+            <span className="text-xs text-textPrimary/60">{monthLabel}</span>
           </div>
         </div>
 
         {/* Budget stat pills */}
         {dataType === "budgets" && budgetData?.[0] && !loading && (
-          <div className="grid grid-cols-3 gap-2 mb-6">
+          <div className="grid px-6 grid-cols-3 gap-2 mb-6">
             {[
               {
                 label: "Budget",
@@ -351,7 +334,7 @@ const Analytics = () => {
                 <BarChart
                   data={chartData}
                   barCategoryGap="35%"
-                  margin={{ top: 0, right: 0, bottom: 0, left: -20 }}
+                  // margin={{ top: 0, right: 0, bottom: 0, left: -20 }}
                 >
                   <CartesianGrid
                     vertical={false}
@@ -361,7 +344,7 @@ const Analytics = () => {
                     dataKey="name"
                     tick={{
                       fontSize: 10,
-                      fill: "rgba(255,255,255,0.3)",
+                      fill: "rgba(255,255,255,0.6)",
                       fontFamily: "poppins",
                     }}
                     axisLine={false}
@@ -370,7 +353,7 @@ const Analytics = () => {
                   <YAxis
                     tick={{
                       fontSize: 10,
-                      fill: "rgba(255,255,255,0.3)",
+                      fill: "rgba(255,255,255,0.6)",
                       fontFamily: "poppins",
                     }}
                     axisLine={false}
@@ -396,14 +379,14 @@ const Analytics = () => {
               ) : (
                 <LineChart
                   data={chartData}
-                  margin={{ top: 0, right: 0, bottom: 0, left: -20 }}
+                  // margin={{ top: 0, right: 0, bottom: 0, left: -20 }}
                 >
                   <CartesianGrid stroke="rgba(255,255,255,0.04)" />
                   <XAxis
                     dataKey="name"
                     tick={{
                       fontSize: 10,
-                      fill: "rgba(255,255,255,0.3)",
+                      fill: "rgba(255,255,255,0.6)",
                       fontFamily: "poppins",
                     }}
                     axisLine={false}
@@ -412,7 +395,7 @@ const Analytics = () => {
                   <YAxis
                     tick={{
                       fontSize: 10,
-                      fill: "rgba(255,255,255,0.3)",
+                      fill: "rgba(255,255,255,0.6)",
                       fontFamily: "poppins",
                     }}
                     axisLine={false}
@@ -451,7 +434,7 @@ const Analytics = () => {
               Transactions
             </h2>
           </div>
-          <span className="text-xs text-textPrimary/30 mt-1">
+          <span className="text-xs text-textPrimary/60 mt-1">
             {sortedTransactions.length} total
           </span>
         </div>
@@ -463,17 +446,7 @@ const Analytics = () => {
         ) : sortedTransactions.length === 0 ? (
           <div className="flex flex-col items-center gap-2 py-8">
             <div className="w-10 h-10 rounded-xl bg-white/4 border border-outline flex items-center justify-center">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="rgba(255,255,255,0.2)"
-                strokeWidth="1.5"
-              >
-                <rect x="2" y="5" width="20" height="14" rx="3" />
-                <path d="M2 10h20" />
-              </svg>
+              <FaAngleDown />
             </div>
             <p className="text-xs text-textPrimary/40">
               No transactions for this period

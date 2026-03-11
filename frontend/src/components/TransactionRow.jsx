@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { FaAngleDown } from "react-icons/fa";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
@@ -95,7 +95,7 @@ const TransactionRow = ({ tx }) => {
           </span>
         </div>
         <div ref={iconRef}>
-          <MdKeyboardArrowDown className="text-textPrimary/30 shrink-0" />
+          <FaAngleDown className="text-textPrimary/30 shrink-0" />
         </div>
       </div>
 

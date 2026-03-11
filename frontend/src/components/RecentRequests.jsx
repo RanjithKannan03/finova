@@ -1,6 +1,8 @@
 import { getRecentRequests } from "@/actions/request-actions";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
+import { TiPlus } from "react-icons/ti";
 
 const RecentRequests = async () => {
   const requests = await getRecentRequests();
@@ -92,9 +94,9 @@ const RecentRequests = async () => {
                 }}
               >
                 <div className="w-6 h-6 rounded-lg border border-dashed border-outline/40 flex items-center justify-center shrink-0">
-                  <span className="text-textPrimary/15 text-xs">+</span>
+                  <TiPlus className="text-textPrimary/30 text-xs" />
                 </div>
-                <span className="text-xs text-textPrimary/20">Empty slot</span>
+                <span className="text-xs text-textPrimary/30">Empty slot</span>
               </div>
             );
 
@@ -102,7 +104,8 @@ const RecentRequests = async () => {
           const d = new Date(req.created_on);
 
           return (
-            <div
+            <Link
+              href={`/requests/${req.request_id}`}
               key={req.request_id}
               className="relative cursor-pointer flex items-center gap-3 px-3 py-2 rounded-xl overflow-hidden border group transition-colors duration-150"
               style={{
@@ -129,7 +132,7 @@ const RecentRequests = async () => {
                 <span className="text-sm font-medium text-textPrimary/80 truncate">
                   {req.name}
                 </span>
-                <span className="text-xs text-textPrimary/30 truncate">
+                <span className="text-xs text-textPrimary/60 truncate">
                   @{req.created_by.username}
                 </span>
               </div>
@@ -146,7 +149,7 @@ const RecentRequests = async () => {
               >
                 {status.label}
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

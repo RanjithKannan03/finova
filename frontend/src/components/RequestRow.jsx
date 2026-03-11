@@ -17,7 +17,7 @@ const RequestRow = ({ request, STATUS_MAP }) => {
     >
       {/* Avatar */}
       <div className="w-8 aspect-square relative rounded-lg bg-white/6 border border-outline flex items-center justify-center shrink-0">
-        {/* <span className="text-xs font-bold text-textPrimary/50 uppercase">
+        {/* <span className="text-[10px] md:text-xs font-bold text-textPrimary/50 uppercase">
           {request.created_by.username[0]}
         </span> */}
         <Image
@@ -35,11 +35,11 @@ const RequestRow = ({ request, STATUS_MAP }) => {
           {request.name}
         </span>
         <div className="flex items-center gap-1.5 mt-0.5">
-          <span className="text-xs text-textPrimary/30">
+          <span className="text-[10px] md:text-xs text-textPrimary/30">
             @{request.created_by.username}
           </span>
-          <span className="text-xs text-textPrimary/15">·</span>
-          <span className="text-xs text-textPrimary/30">
+          <span className="text-[10px] md:text-xs text-textPrimary/15">·</span>
+          <span className="text-[10px] md:text-xs text-textPrimary/30">
             {d.toLocaleDateString("en-GB", {
               day: "2-digit",
               month: "short",
@@ -51,7 +51,7 @@ const RequestRow = ({ request, STATUS_MAP }) => {
 
       {/* Status pill */}
       <div
-        className="shrink-0 px-2.5 py-1 rounded-full text-xs font-semibold border"
+        className="shrink-0 px-2.5 py-1 rounded-full text-[10px] md:text-xs font-semibold border"
         style={{
           color: status.color,
           background: status.bg,
