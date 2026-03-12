@@ -149,8 +149,8 @@ export async function register(prevState, formData) {
   const email = formData.get("email");
   const password = formData.get("password");
   const username = formData.get("username");
-  const firstName = formData.get("firstname");
-  const lastName = formData.get("lastname");
+  // const firstName = formData.get("firstname");
+  // const lastName = formData.get("lastname");
 
   if (!email || email.trim().length === 0) {
     return {
@@ -176,24 +176,22 @@ export async function register(prevState, formData) {
       error: "Username field cannot be empty.",
     };
   }
-  if (!firstName || firstName.trim().length === 0) {
-    return {
-      error: "First name field cannot be empty.",
-    };
-  }
+  // if (!firstName || firstName.trim().length === 0) {
+  //   return {
+  //     error: "First name field cannot be empty.",
+  //   };
+  // }
 
-  if (!lastName || lastName.trim().length === 0) {
-    return {
-      error: "Last name field cannot be empty.",
-    };
-  }
+  // if (!lastName || lastName.trim().length === 0) {
+  //   return {
+  //     error: "Last name field cannot be empty.",
+  //   };
+  // }
 
   const payload = {
     email: email,
     password: password,
     username: username,
-    firstName: firstName,
-    lastName: lastName,
   };
   const csrfToken = cookieStore.get("csrftoken")?.value;
 

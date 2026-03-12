@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import RequestRow from "./RequestRow";
 import RequestDropdown from "./RequestDropdown";
 import RequestsEmptyState from "./RequestsEmptyState";
+import Link from "next/link";
+import { TiPlus } from "react-icons/ti";
 
 const STATUS_MAP = {
   PEN: {
@@ -53,6 +55,16 @@ const RequestsPage = ({ requests = [] }) => {
   return (
     <div className="w-full flex flex-col gap-6 font-poppins">
       {/* ── Header card ── */}
+
+      <div className="w-full flex justify-end">
+        <Link href={"/requests/new-request"}>
+          <div className="flex card p-2 items-center gap-2 hover:highlight text-textPrimary/60 text-xs md:text-sm">
+            <TiPlus />
+            <span>Request</span>
+          </div>
+        </Link>
+      </div>
+
       <div className="card px-6 py-5 relative overflow">
         <div className="flex items-start justify-between">
           <div>

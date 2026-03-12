@@ -211,11 +211,35 @@ const RequestDetailPage = ({ data, id }) => {
           />
         </div>
 
-        {/* Cast vote */}
-        {canVote && (
+        {request.type === "B" && (
           <div className="card px-5 py-5 flex flex-col gap-3 relative overflow-hidden">
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
+                Budget Request
+              </p>
+            </div>
+
+            <div className="w-full h-px bg-outline/50" />
+
+            {/* Proposed budget */}
+            <div className="flex items-center justify-between px-1">
+              <span className="text-xs uppercase tracking-wider text-textPrimary/60">
+                Proposed Budget
+              </span>
+              <span className="text-sm font-semibold text-emerald-400/80">
+                £{parseFloat(request.new_budget).toFixed(2)}
+              </span>
+            </div>
+
+            <div className="w-full h-px bg-outline/50" />
+          </div>
+        )}
+
+        {/* Cast vote */}
+        {canVote && !votesClosed && (
+          <div className="card px-5 py-5 flex flex-col gap-3 relative overflow-hidden">
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/60">
                 Cast Vote
               </p>
               <p className="text-xs text-textPrimary/40 mt-0.5">
@@ -245,7 +269,7 @@ const RequestDetailPage = ({ data, id }) => {
         )}
 
         {/* Already voted */}
-        {!canVote && !votesClosed && hasVoted && (
+        {!canVote && hasVoted && (
           <div className="card px-5 py-4">
             <p className="text-xs uppercase tracking-wider text-textPrimary/30 mb-1">
               Your Vote

@@ -4,7 +4,10 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.core.exceptions import ValidationError
-from datetime import timedelta
+from datetime import timedelta,datetime
+
+from rest_framework import status
+from rest_framework.response import Response
 
 
 # Create your models here.
@@ -20,6 +23,10 @@ class Request(models.Model):
         ACCEPTED = "ACC", _("Accepted")
         REJECTED = "REJ", _("Rejected")
 
+    class Type(models.TextChoices):
+        NORMAL = "N", _("Normal")
+        BUDGET = "B", _("Budget")
+
     request_id=models.UUIDField(default=uuid.uuid4,editable=False,unique=True,primary_key=True)
     name=models.CharField(max_length=200)
     description=models.TextField()
@@ -28,6 +35,8 @@ class Request(models.Model):
     flat=models.ForeignKey('flats.Flat',on_delete=models.CASCADE,related_name="requests")
     status=models.CharField(max_length=3,choices=Status.choices,default=Status.PENDING)
     expiry_date=models.DateTimeField(default=default_expiry_date,editable=False)
+    type=models.CharField(choices=Type.choices,max_length=2,default=Type.NORMAL)
+    new_budget=models.DecimalField(max_digits=10, decimal_places=2,default=0.0)
 
     def accept_count(self):
         return self.votes.filter(choice=Vote.VoteChoice.ACCEPT).count()
@@ -38,6 +47,26 @@ class Request(models.Model):
     def can_be_finalized(self):
         return timezone.now() >= self.expiry_date and self.status == self.Status.PENDING
 
+    # def finalize(self):
+    #     if not self.can_be_finalized():
+    #         raise ValidationError("Voting period not finished.")
+    #
+    #     if self.accept_count() > self.reject_count():
+    #         self.status = self.Status.ACCEPTED
+    #     else:
+    #         self.status = self.Status.REJECTED
+    #
+    #     if self.type == self.Type.BUDGET:
+    #         flat=self.flat
+    #         today = datetime.today()
+    #         current_budget = flat.budgets.filter(year=today.year, month=today.month).first()
+    #
+    #
+    #         current_budget.amount = self.new_budget
+    #         current_budget.save()
+    #
+    #     self.save(update_fields=["status"])
+
     def finalize(self):
         if not self.can_be_finalized():
             raise ValidationError("Voting period not finished.")
@@ -46,6 +75,15 @@ class Request(models.Model):
             self.status = self.Status.ACCEPTED
         else:
             self.status = self.Status.REJECTED
+
+        if self.status == self.Status.ACCEPTED and self.type == self.Type.BUDGET:
+            flat = self.flat
+            today = timezone.now()
+            current_budget = flat.budgets.filter(year=today.year, month=today.month).first()
+            if not current_budget:
+                raise ValidationError("No budget found for current month.")
+            current_budget.amount = self.new_budget
+            current_budget.save()
 
         self.save(update_fields=["status"])
 

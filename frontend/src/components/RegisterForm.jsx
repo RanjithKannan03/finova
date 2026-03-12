@@ -68,7 +68,7 @@ const RegisterForm = () => {
           </label>
         </div>
 
-        <div className="relative items-center w-full px-2 py-1 border border-gray-200 rounded-md 0 focus-within:ring-1 focus-within:ring-black">
+        {/* <div className="relative items-center w-full px-2 py-1 border border-gray-200 rounded-md 0 focus-within:ring-1 focus-within:ring-black">
           <input
             type="text"
             id="floating_outlined_username"
@@ -98,7 +98,7 @@ const RegisterForm = () => {
           >
             Lastname
           </label>
-        </div>
+        </div> */}
 
         <div className="relative flex items-center w-full px-2 py-1 border border-gray-200 rounded-md 0 focus-within:ring-1 focus-within:ring-black">
           <input

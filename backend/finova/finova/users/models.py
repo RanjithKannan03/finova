@@ -9,6 +9,8 @@ class User(AbstractUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
+    first_name = models.CharField(max_length=150, blank=True, null=True)
+    last_name = models.CharField(max_length=150, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}".strip() or self.email
+        return f"{self.username}".strip() or self.email

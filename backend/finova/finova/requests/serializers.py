@@ -14,11 +14,11 @@ class RequestSerializer(serializers.ModelSerializer):
     votes = VoteSerializer(many=True,read_only=True)
     class Meta:
         model = Request
-        fields=['request_id','created_by','created_on','name','description','status','votes','expiry_date']
+        fields=['request_id','created_by','created_on','name','description','status','votes','expiry_date','type',"new_budget"]
 
 
 class RequestListSerializer(serializers.ModelSerializer):
     created_by = UserSerializer(read_only=True)
     class Meta:
         model = Request
-        fields=['request_id','created_by','created_on','name','status']
+        fields=['request_id','created_by','created_on','name','status','type']

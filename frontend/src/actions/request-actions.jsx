@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const BACKEND_URL = process.env.BACKEND_URL;
 
@@ -125,4 +126,44 @@ export async function markRequest(id) {
   revalidatePath(`/requests/${id}`);
   revalidatePath("/");
   revalidatePath("/requests");
+}
+
+export async function createRequest(prevState, formData) {
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get("access_token")?.value;
+  const csrfToken = cookieStore.get("csrftoken")?.value;
+
+  const name = formData.get("name");
+  const description = formData.get("description");
+  const type = formData.get("type");
+
+  const payload = {
+    name: name,
+    description: description,
+    type: type,
+  };
+  if (type === "B") {
+    const new_budget = Number(formData.get("new_budget"));
+    payload.new_budget = new_budget;
+  }
+
+  const res = await fetch(`${BACKEND_URL}/requests/create/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+      "X-CSRFToken": csrfToken || "",
+      Cookie: `access_token=${accessToken}`,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (res.status === 400) {
+    return {
+      error: data.error,
+    };
+  }
+  revalidatePath("/");
+  revalidatePath("/requests");
+  redirect("/requests");
 }
