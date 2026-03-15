@@ -9,6 +9,7 @@ const AuthFormSubmitButton = ({ text }) => {
 
   return (
     <button
+      aria-label="submit"
       id="login-btn"
       type="submit"
       disabled={status.pending}

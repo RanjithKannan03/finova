@@ -70,6 +70,7 @@ const ProfilePicForm = () => {
       >
         {/* Preview / Upload trigger */}
         <button
+          aria-label="pp"
           type="button"
           onClick={() => inputRef.current?.click()}
           className="relative group shrink-0 cursor-pointer"
@@ -153,7 +154,11 @@ const ProfilePicForm = () => {
                 <Loading />
               </div>
             ) : (
-              <button id="login-bth" className="w-full cursor-pointer">
+              <button
+                aria-label="save"
+                id="login-bth"
+                className="w-full cursor-pointer"
+              >
                 Save
               </button>
             )}

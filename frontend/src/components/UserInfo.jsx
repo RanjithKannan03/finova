@@ -43,6 +43,7 @@ const UserInfo = () => {
           <Image
             src={user.profilePic}
             fill
+            fetchPriority="high"
             className="object-fill border-4 border-outline rounded-full"
             alt="profile-pic"
             sizes="112"

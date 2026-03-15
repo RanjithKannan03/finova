@@ -11,6 +11,7 @@ const Navbar_NoFlat = () => {
           <UserInfo />
 
           <button
+            aria-label="logout"
             onClick={logout}
             className="cursor-pointer p-2 lg:px-4 lg:py-2 border border-outline bg-foreground rounded-full hover:highlight transition-all"
           >

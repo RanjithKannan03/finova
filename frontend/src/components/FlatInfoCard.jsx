@@ -18,7 +18,7 @@ const FlatInfoCard = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
+          <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/60">
             Your Flat
           </p>
           <h2 className="text-lg font-semibold text-textPrimary/90 mt-0.5">
@@ -26,7 +26,7 @@ const FlatInfoCard = () => {
           </h2>
         </div>
         <div className="flex flex-col items-end gap-1">
-          <p className="text-[10px] uppercase tracking-[0.15em] text-textPrimary/30">
+          <p className="text-[10px] uppercase tracking-[0.15em] text-textPrimary/60">
             Join Code
           </p>
           <div className="flex items-center gap-2 px-3 py-1 rounded-xl bg-white/5 border border-outline">
@@ -34,8 +34,9 @@ const FlatInfoCard = () => {
               {flat.joinCode}
             </span>
             <button
+              aria-label="copy"
               onClick={() => navigator.clipboard.writeText(flat.joinCode)}
-              className="text-textPrimary/30 hover:text-textPrimary/70 cursor-pointer transition-colors duration-150"
+              className="text-textPrimary/60 hover:text-textPrimary/70 cursor-pointer transition-colors duration-150"
             >
               <svg
                 width="11"
@@ -69,7 +70,7 @@ const FlatInfoCard = () => {
             key={label}
             className="flex flex-col gap-0.5 px-3 py-2 rounded-xl bg-white/5 border border-outline/60"
           >
-            <p className="text-[10px] uppercase tracking-wider text-textPrimary/30">
+            <p className="text-[10px] uppercase tracking-wider text-textPrimary/60">
               {label}
             </p>
             <p className="text-sm font-semibold text-textPrimary/80">{value}</p>
@@ -79,7 +80,7 @@ const FlatInfoCard = () => {
 
       {/* Flatmates */}
       <div className="flex flex-col gap-2">
-        <p className="text-[10px] uppercase tracking-[0.15em] text-textPrimary/30">
+        <p className="text-[10px] uppercase tracking-[0.15em] text-textPrimary/60">
           Flatmates
         </p>
         <div className="flex flex-col gap-1.5">
@@ -117,7 +118,7 @@ const FlatInfoCard = () => {
                         src={mate.profile_pic}
                         className="object-contain rounded-lg"
                         fill
-                        sizes="100"
+                        sizes="100px"
                         alt="avatar"
                       />
                     </div>
@@ -135,7 +136,7 @@ const FlatInfoCard = () => {
                     <div className="w-6 h-6 rounded-lg border border-dashed border-outline/40 flex items-center justify-center">
                       <span className="text-textPrimary/15 text-xs">+</span>
                     </div>
-                    <span className="text-xs text-textPrimary/20">
+                    <span className="text-xs text-textPrimary/40">
                       Empty slot
                     </span>
                   </div>

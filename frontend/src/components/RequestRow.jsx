@@ -25,7 +25,7 @@ const RequestRow = ({ request, STATUS_MAP }) => {
           fill
           alt="avatar"
           className="object-contain rounded-lg"
-          sizes="100"
+          sizes="100px"
         />
       </div>
 
@@ -35,11 +35,11 @@ const RequestRow = ({ request, STATUS_MAP }) => {
           {request.name}
         </span>
         <div className="flex items-center gap-1.5 mt-0.5">
-          <span className="text-[10px] md:text-xs text-textPrimary/30">
+          <span className="text-[10px] md:text-xs text-textPrimary/60">
             @{request.created_by.username}
           </span>
           <span className="text-[10px] md:text-xs text-textPrimary/15">·</span>
-          <span className="text-[10px] md:text-xs text-textPrimary/30">
+          <span className="text-[10px] md:text-xs text-textPrimary/60">
             {d.toLocaleDateString("en-GB", {
               day: "2-digit",
               month: "short",

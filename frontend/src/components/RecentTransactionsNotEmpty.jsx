@@ -49,7 +49,7 @@ export const RecentTransactionsNotEmpty = ({ transactions }) => {
                 <span className="text-sm font-medium text-textPrimary/80">
                   {date}
                 </span>
-                <span className="text-xs text-textPrimary/30">{time}</span>
+                <span className="text-xs text-textPrimary/60">{time}</span>
               </div>
 
               {/* User pill */}

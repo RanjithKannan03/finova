@@ -23,7 +23,7 @@ const LoginForm = () => {
             <Image
               src="/logo.png"
               fill
-              sizes="100"
+              sizes="100px"
               alt="logo"
               className="object-contain"
             />
@@ -63,7 +63,7 @@ const LoginForm = () => {
               type="text"
               name="email"
               placeholder="you@email.com"
-              className="w-full bg-white/4 border border-outline rounded-xl px-4 py-2.5 text-sm text-textPrimary/80 placeholder:text-textPrimary/20 focus:outline-none focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)] transition-all duration-150"
+              className="w-full bg-white/4 border border-outline rounded-xl px-4 py-2.5 text-sm text-textPrimary/80 placeholder:text-textPrimary/40 focus:outline-none focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)] transition-all duration-150"
             />
           </div>
 
@@ -78,9 +78,10 @@ const LoginForm = () => {
                 name="password"
                 autoComplete="off"
                 placeholder="••••••••"
-                className="w-full bg-white/4 border border-outline rounded-xl px-4 pr-11 py-2.5 text-sm text-textPrimary/80 placeholder:text-textPrimary/20 focus:outline-none focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)] transition-all duration-150"
+                className="w-full bg-white/4 border border-outline rounded-xl px-4 pr-11 py-2.5 text-sm text-textPrimary/80 placeholder:text-textPrimary/40 focus:outline-none focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)] transition-all duration-150"
               />
               <button
+                aria-label="show-pass"
                 type="button"
                 onClick={() => setShowPassword((p) => !p)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-textPrimary/60 hover:text-textPrimary/60 transition-colors duration-150"

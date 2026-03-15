@@ -46,6 +46,7 @@ const NavbarMobile = ({ navLinks }) => {
     <div className="" ref={container}>
       {/* Hamburger */}
       <button
+        aria-label="burger"
         onClick={() => setOpen((prev) => !prev)}
         className="w-7 z-50 relative lg:hidden aspect-square flex flex-col justify-around"
       >
@@ -99,6 +100,7 @@ const NavbarMobile = ({ navLinks }) => {
                 src="/logo.png"
                 alt="logo"
                 fill
+                sizes="100px"
                 className="object-contain"
               />
             </div>

@@ -10,7 +10,11 @@ const SubmitButton = ({ text, isPending }) => {
           <Loading />
         </div>
       ) : (
-        <button id="login-bth" className="w-full cursor-pointer">
+        <button
+          aria-label="submit"
+          id="login-bth"
+          className="w-full cursor-pointer"
+        >
           {text}
         </button>
       )}

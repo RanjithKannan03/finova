@@ -73,7 +73,7 @@ const AddTransactionForm = () => {
       {/* Header */}
       <div className="shrink-0 px-6 pt-6 pb-4 flex items-center justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
+          <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/60">
             New
           </p>
           <h2 className="text-lg xl:text-xl font-semibold text-textPrimary/90 mt-0.5">
@@ -81,6 +81,7 @@ const AddTransactionForm = () => {
           </h2>
         </div>
         <button
+          aria-label="Add"
           type="button"
           onClick={addItem}
           className="flex items-center cursor-pointer gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium
@@ -95,7 +96,7 @@ const AddTransactionForm = () => {
       {/* Column headers — hidden on mobile */}
       <div className="shrink-0 px-6 pb-2 hidden md:block">
         <div
-          className="grid gap-2 text-sm uppercase tracking-wider text-textPrimary/25 px-1"
+          className="grid gap-2 text-sm uppercase tracking-wider text-textPrimary/45 px-1"
           style={{ gridTemplateColumns: "1fr 2fr 80px 60px 28px" }}
         >
           <span>Category</span>
@@ -181,11 +182,12 @@ const AddTransactionForm = () => {
 
               {/* Remove */}
               <button
+                aria-label="remove"
                 type="button"
                 onClick={() => removeItem(index)}
                 disabled={items.length === 1}
                 className="flex items-center cursor-pointer justify-center w-full h-7 rounded-lg
-                          text-red-400 bg-red-400/10 xl:bg-transparent xl:text-textPrimary/30 xl:hover:text-red-400 xl:hover:bg-red-400/10
+                          text-red-400 bg-red-400/10 xl:bg-transparent xl:text-textPrimary/60 xl:hover:text-red-400 xl:hover:bg-red-400/10
                            border border-outline/30 md:w-6 md:h-6 md:border-none
                            transition-all duration-150 disabled:opacity-20 disabled:cursor-not-allowed"
               >
@@ -201,7 +203,7 @@ const AddTransactionForm = () => {
         <div className="mx-6 h-px bg-outline/50" />
         <div className="px-6 py-4 flex flex-col gap-3">
           <div className="flex items-center justify-between px-1">
-            <span className="text-xs uppercase tracking-wider text-textPrimary/30">
+            <span className="text-xs uppercase tracking-wider text-textPrimary/60">
               Total
             </span>
             <span className="text-sm font-semibold text-textPrimary/80">

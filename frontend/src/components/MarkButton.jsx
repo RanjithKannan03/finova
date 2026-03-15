@@ -8,6 +8,7 @@ const MarkButton = ({ label, id, color, bg, border, icon, disabled }) => {
 
   return (
     <button
+      aria-label="mark"
       onClick={onClick}
       disabled={disabled}
       className="flex items-center cursor-pointer justify-center gap-2 w-full py-3 rounded-xl text-sm font-medium

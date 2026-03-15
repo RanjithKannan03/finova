@@ -124,7 +124,7 @@ const RequestDetailPage = ({ data, id }) => {
                 key={label}
                 className="flex flex-col gap-0.5 px-3 py-2 rounded-xl bg-white/3 border border-outline/60"
               >
-                <p className="text-xs uppercase tracking-wider text-textPrimary/30">
+                <p className="text-xs uppercase tracking-wider text-textPrimary/60">
                   {label}
                 </p>
                 <p className="text-xs font-medium text-textPrimary/75">
@@ -139,14 +139,14 @@ const RequestDetailPage = ({ data, id }) => {
         <div className="card px-6 py-6 relative overflow-hidden">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
+              <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/60">
                 Votes
               </p>
               <h2 className="text-base font-semibold text-textPrimary/90 mt-0.5">
                 {total} vote{total !== 1 ? "s" : ""} cast
               </h2>
             </div>
-            <div className="flex items-center gap-2 text-xs text-textPrimary/30">
+            <div className="flex items-center gap-2 text-xs text-textPrimary/60">
               <span className="text-emerald-400/70 font-medium">
                 {accVotes} ACC
               </span>
@@ -173,7 +173,7 @@ const RequestDetailPage = ({ data, id }) => {
 
           {/* Vote list */}
           {request.votes.length === 0 ? (
-            <p className="text-xs text-textPrimary/30 py-4 text-center">
+            <p className="text-xs text-textPrimary/60 py-4 text-center">
               No votes yet
             </p>
           ) : (
@@ -191,7 +191,7 @@ const RequestDetailPage = ({ data, id }) => {
         {/* Expiry card */}
         <div className="card px-5 py-4 flex items-center justify-between">
           <div>
-            <p className="text-xs uppercase tracking-wider text-textPrimary/30">
+            <p className="text-xs uppercase tracking-wider text-textPrimary/60">
               Time Remaining
             </p>
             <p className="text-sm font-semibold text-textPrimary/80 mt-0.5">
@@ -214,7 +214,7 @@ const RequestDetailPage = ({ data, id }) => {
         {request.type === "B" && (
           <div className="card px-5 py-5 flex flex-col gap-3 relative overflow-hidden">
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
+              <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/60">
                 Budget Request
               </p>
             </div>
@@ -271,7 +271,7 @@ const RequestDetailPage = ({ data, id }) => {
         {/* Already voted */}
         {!canVote && hasVoted && (
           <div className="card px-5 py-4">
-            <p className="text-xs uppercase tracking-wider text-textPrimary/30 mb-1">
+            <p className="text-xs uppercase tracking-wider text-textPrimary/60 mb-1">
               Your Vote
             </p>
             {(() => {
@@ -300,7 +300,7 @@ const RequestDetailPage = ({ data, id }) => {
         {/* Votes closed */}
         {votesClosed && (
           <div className="card px-5 py-4">
-            <p className="text-xs uppercase tracking-wider text-textPrimary/30 mb-1">
+            <p className="text-xs uppercase tracking-wider text-textPrimary/60 mb-1">
               Voting
             </p>
             <p className="text-xs text-textPrimary/40 mt-1">
@@ -312,7 +312,7 @@ const RequestDetailPage = ({ data, id }) => {
         {isAdmin && votesClosed && request.status === "PEN" && (
           <div className="card px-5 py-5 flex flex-col gap-3 relative overflow-hidden">
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
+              <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/60">
                 Admin
               </p>
               <p className="text-xs text-textPrimary/40 mt-0.5">

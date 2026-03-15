@@ -63,6 +63,7 @@ const NewRequestForm = () => {
           <div className="grid grid-cols-2 gap-2">
             {TYPES.map((t) => (
               <button
+                aria-label="req-type"
                 key={t.value}
                 type="button"
                 onClick={() => setType(t.value)}
@@ -90,7 +91,7 @@ const NewRequestForm = () => {
                 >
                   {t.label}
                 </span>
-                <span className="text-xs text-textPrimary/30">{t.desc}</span>
+                <span className="text-xs text-textPrimary/60">{t.desc}</span>
               </button>
             ))}
           </div>

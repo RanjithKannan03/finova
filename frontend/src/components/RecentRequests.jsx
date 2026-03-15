@@ -68,7 +68,7 @@ const RecentRequests = async () => {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
+          <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/60">
             Overview
           </p>
           <h2 className="text-lg font-semibold text-textPrimary/90 mt-0.5">
@@ -94,9 +94,9 @@ const RecentRequests = async () => {
                 }}
               >
                 <div className="w-6 h-6 rounded-lg border border-dashed border-outline/40 flex items-center justify-center shrink-0">
-                  <TiPlus className="text-textPrimary/30 text-xs" />
+                  <TiPlus className="text-textPrimary/60 text-xs" />
                 </div>
-                <span className="text-xs text-textPrimary/30">Empty slot</span>
+                <span className="text-xs text-textPrimary/60">Empty slot</span>
               </div>
             );
 
@@ -122,7 +122,7 @@ const RecentRequests = async () => {
                   src={req.created_by.profile_pic}
                   fill
                   className="object-contain rounded-lg"
-                  sizes="100"
+                  sizes="100px"
                   alt="avatar"
                 />
               </div>

@@ -49,6 +49,7 @@ const DropdownToggle = ({ form, setForm }) => {
         <div className="flex text-sm md:text-base  items-center w-full justify-between ">
           <p>{form}</p>
           <button
+            aria-label="drop-toggle"
             onClick={() => setOpen((prev) => !prev)}
             className="p-1 rounded-full hover:highlight cursor-pointer"
           >
@@ -64,6 +65,7 @@ const DropdownToggle = ({ form, setForm }) => {
           className={`flex flex-col gap-2 border-t border-white/20 text-sm w-full items-center-safe overflow-hidden h-0 opacity-0 ${open ? "pb-2" : "pb-0"}`}
         >
           <button
+            aria-label="join"
             onClick={() => {
               setForm("Join Flat");
               setOpen(false);
@@ -76,6 +78,7 @@ const DropdownToggle = ({ form, setForm }) => {
             <span className="relative z-10">Join Flat</span>
           </button>
           <button
+            aria-label="create"
             onClick={() => {
               setForm("Create Flat");
               setOpen(false);

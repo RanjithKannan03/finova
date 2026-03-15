@@ -29,7 +29,7 @@ const BudgetDonut = async () => {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
+          <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/60">
             This Month
           </p>
           <h2 className="text-lg font-semibold text-textPrimary/90 mt-0.5">
@@ -60,7 +60,7 @@ const BudgetDonut = async () => {
           <span className="text-xl font-bold text-textPrimary/90">
             {spentPct}%
           </span>
-          <span className="text-[10px] uppercase tracking-wider text-textPrimary/30">
+          <span className="text-[10px] uppercase tracking-wider text-textPrimary/60">
             spent
           </span>
         </div>

@@ -73,7 +73,7 @@ const TransactionRow = ({ tx }) => {
             src={tx.created_by.profile_pic}
             alt="avatar"
             fill
-            sizes="100"
+            sizes="100px"
             className="object-contain rounded-lg"
           />
         </div>
@@ -81,7 +81,7 @@ const TransactionRow = ({ tx }) => {
           <span className="text-xs font-medium text-textPrimary/80 truncate">
             {tx.created_by.first_name} {tx.created_by.last_name}
           </span>
-          <span className="text-[10px] lg:text-xs text-textPrimary/30">
+          <span className="text-[10px] lg:text-xs text-textPrimary/60">
             @{tx.created_by.username} · {tx.items.length} item
             {tx.items.length !== 1 ? "s" : ""}
           </span>
@@ -90,12 +90,12 @@ const TransactionRow = ({ tx }) => {
           <span className="text-xs font-semibold text-textPrimary/80">
             £{parseFloat(tx.total_amount).toFixed(2)}
           </span>
-          <span className="text-[10px] lg:text-xs text-textPrimary/30">
+          <span className="text-[10px] lg:text-xs text-textPrimary/60">
             {d.toLocaleDateString("en-GB", { day: "2-digit", month: "short" })}
           </span>
         </div>
         <div ref={iconRef}>
-          <FaAngleDown className="text-textPrimary/30 shrink-0" />
+          <FaAngleDown className="text-textPrimary/60 shrink-0" />
         </div>
       </div>
 
@@ -117,7 +117,7 @@ const TransactionRow = ({ tx }) => {
                   <span className="text-[10px] lg:text-xs text-textPrimary/60">
                     {item.name}
                   </span>
-                  <span className="text-[10px] lg:text-xs text-textPrimary/25">
+                  <span className="text-[10px] lg:text-xs text-textPrimary/45">
                     × {item.units}
                   </span>
                 </div>

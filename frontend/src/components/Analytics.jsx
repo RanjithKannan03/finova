@@ -246,6 +246,7 @@ const Analytics = () => {
         {/* Month picker */}
         <div className="flex items-center gap-1">
           <button
+            aria-label="month-picker"
             onClick={prevMonth}
             className="w-7 h-7 cursor-pointer flex items-center justify-center rounded-lg bg-white/5 border border-outline
                        text-textPrimary/50 hover:bg-white/9 transition-all duration-150"
@@ -256,6 +257,7 @@ const Analytics = () => {
             {monthLabel}
           </span>
           <button
+            aria-label="next-month"
             onClick={nextMonth}
             disabled={isCurrentMonth}
             className="w-7 h-7 cursor-pointer flex items-center justify-center rounded-lg bg-white/5 border border-outline
@@ -271,7 +273,7 @@ const Analytics = () => {
       <div className="card  py-6 relative overflow-hidden">
         <div className="flex px-6 items-start justify-between mb-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
+            <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/60">
               {dataType === "budgets"
                 ? "Breakdown"
                 : viewMode === "category"
@@ -314,7 +316,7 @@ const Analytics = () => {
                 key={label}
                 className="flex flex-col gap-0.5 px-3 py-2 rounded-xl bg-white/3 border border-outline/60"
               >
-                <p className="text-xs uppercase tracking-wider text-textPrimary/30">
+                <p className="text-xs uppercase tracking-wider text-textPrimary/60">
                   {label}
                 </p>
                 <p className={`text-sm font-semibold ${color}`}>{value}</p>
@@ -427,7 +429,7 @@ const Analytics = () => {
       <div className="card px-6 py-6 relative overflow-hidden">
         <div className="flex items-start justify-between mb-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
+            <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/60">
               History
             </p>
             <h2 className="text-lg font-semibold text-textPrimary/90 mt-0.5">

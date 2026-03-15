@@ -64,7 +64,7 @@ const RecentTransactions = async () => {
         <div className="flex items-center justify-between">
           <div>
             <p
-              className="text-xs font-medium uppercase tracking-widest text-textPrimary/30"
+              className="text-xs font-medium uppercase tracking-widest text-textPrimary/60"
               style={{ letterSpacing: "0.15em" }}
             >
               Activity

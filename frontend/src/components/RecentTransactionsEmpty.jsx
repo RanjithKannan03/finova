@@ -6,7 +6,7 @@ const RecentTransactionsEmpty = () => {
       <div className="relative">
         <div
           className="w-16 h-16 rounded-2xl flex items-center justify-center 
-                        bg-white/[0.03] border border-outline"
+                        bg-white/3 border border-outline"
         >
           <svg
             width="22"
@@ -15,7 +15,7 @@ const RecentTransactionsEmpty = () => {
             fill="none"
             stroke="currentColor"
             strokeWidth="1.5"
-            className="text-textPrimary/25"
+            className="text-textPrimary/45"
           >
             <rect x="2" y="5" width="20" height="14" rx="3" />
             <path d="M2 10h20" />
@@ -28,14 +28,15 @@ const RecentTransactionsEmpty = () => {
         <p className="text-sm font-medium text-textPrimary/55">
           No transactions yet
         </p>
-        <p className="text-xs mt-1 text-textPrimary/25">
+        <p className="text-xs mt-1 text-textPrimary/45">
           Your activity will appear here
         </p>
       </div>
 
       <button
+        aria-label="add-transaction"
         className="mt-1 px-5 py-2 rounded-xl text-xs font-medium transition-all duration-200 
-                         bg-white/[0.06] border border-outline hover:bg-white/10 
+                         bg-white/6 border border-outline hover:bg-white/10 
                          active:scale-95 text-textPrimary/60"
       >
         + Add transaction

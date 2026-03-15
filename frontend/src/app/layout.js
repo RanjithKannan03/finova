@@ -45,23 +45,11 @@ export const poppins = localFont({
   display: "swap",
 });
 
-export const notoSansJP = localFont({
-  src: [
-    {
-      path: "./fonts/Noto_Sans_JP/NotoSansJP-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  variable: "--font-noto-jp",
-  display: "swap",
-});
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${notoSansJP.variable} ${poppins.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${poppins.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

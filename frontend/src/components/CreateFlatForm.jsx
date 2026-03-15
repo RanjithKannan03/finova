@@ -53,7 +53,7 @@ const CreateFlatForm = () => {
             type="text"
             name="flatName"
             placeholder="My Flat"
-            className="w-full bg-white/4 border border-outline rounded-xl px-4 py-2.5 text-sm text-textPrimary/80 placeholder:text-textPrimary/20 focus:outline-none focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)] transition-all duration-150"
+            className="w-full bg-white/4 border border-outline rounded-xl px-4 py-2.5 text-sm text-textPrimary/80 placeholder:text-textPrimary/40 focus:outline-none focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)] transition-all duration-150"
           />
         </div>
 
@@ -72,7 +72,7 @@ const CreateFlatForm = () => {
               placeholder="0.00"
               min="0"
               step="0.01"
-              className="w-full bg-white/4 border border-outline rounded-xl pl-8 pr-4 py-2.5 text-sm text-textPrimary/80 placeholder:text-textPrimary/20 focus:outline-none focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)] transition-all duration-150"
+              className="w-full bg-white/4 border border-outline rounded-xl pl-8 pr-4 py-2.5 text-sm text-textPrimary/80 placeholder:text-textPrimary/40 focus:outline-none focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)] transition-all duration-150"
             />
           </div>
         </div>

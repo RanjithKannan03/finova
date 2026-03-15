@@ -19,7 +19,7 @@ const RequestsEmptyState = ({ filter, STATUS_MAP }) => (
       <p className="text-sm font-medium text-textPrimary/50">
         No requests found
       </p>
-      <p className="text-xs text-textPrimary/25 mt-0.5">
+      <p className="text-xs text-textPrimary/45 mt-0.5">
         {filter === "ALL"
           ? "No requests have been made yet"
           : `No ${STATUS_MAP[filter]?.label.toLowerCase()} requests`}

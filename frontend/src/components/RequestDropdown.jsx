@@ -51,6 +51,7 @@ const RequestDropdown = ({ value, options, onChange }) => {
       style={{ zIndex: open ? 50 : 10 }}
     >
       <button
+        aria-label="drop"
         type="button"
         onClick={() => setOpen((p) => !p)}
         className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-outline
@@ -68,6 +69,7 @@ const RequestDropdown = ({ value, options, onChange }) => {
         <div className="flex flex-col py-1">
           {options.map((opt) => (
             <button
+              aria-label="drop"
               key={opt.value}
               type="button"
               onClick={() => {

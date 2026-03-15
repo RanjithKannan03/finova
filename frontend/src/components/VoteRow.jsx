@@ -24,7 +24,7 @@ const VoteRow = ({ vote, VOTE_MAP }) => {
           src={vote.cast_by.profile_pic}
           fill
           className="rounded-lg object-contain"
-          sizes="100"
+          sizes="100px"
           alt="avatar"
         />
       </div>
@@ -32,7 +32,7 @@ const VoteRow = ({ vote, VOTE_MAP }) => {
         <span className="text-xs font-medium text-textPrimary/75 truncate">
           @{vote.cast_by.username}
         </span>
-        <span className="text-xs text-textPrimary/30">{fmt(vote.cast_on)}</span>
+        <span className="text-xs text-textPrimary/60">{fmt(vote.cast_on)}</span>
       </div>
       <span
         className="text-xs font-semibold shrink-0"

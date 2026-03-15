@@ -68,7 +68,7 @@ const RequestsPage = ({ requests = [] }) => {
       <div className="card px-6 py-5 relative overflow">
         <div className="flex items-start justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
+            <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/60">
               Overview
             </p>
             <h1 className="text-xl font-semibold text-textPrimary/90 mt-0.5">
@@ -86,6 +86,7 @@ const RequestsPage = ({ requests = [] }) => {
         <div className="flex items-center gap-2 mt-4 flex-wrap">
           {Object.entries(STATUS_MAP).map(([key, meta]) => (
             <button
+              aria-label="req"
               key={key}
               onClick={() => setFilter(filter === key ? "ALL" : key)}
               className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border transition-all duration-150"

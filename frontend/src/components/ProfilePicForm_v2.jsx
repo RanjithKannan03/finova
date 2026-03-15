@@ -59,6 +59,7 @@ const ProfilePicForm_v2 = () => {
       <form action={formAction} className="flex flex-col items-center gap-6">
         {/* Avatar Upload */}
         <button
+          aria-label="pp-upload"
           type="button"
           onClick={() => inputRef.current?.click()}
           className="relative group shrink-0 cursor-pointer"

@@ -36,7 +36,7 @@ const JoinFlatForm = () => {
     <div className="relative w-full flex flex-col items-center card gap-6 px-5 py-8 font-poppins overflow-hidden md:gap-8 md:px-8 md:py-10">
       {/* Header */}
       <div className="flex flex-col items-center gap-1.5">
-        <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/30">
+        <p className="text-xs uppercase tracking-[0.2em] text-textPrimary/60">
           Invite Code
         </p>
         <h1 className="text-2xl font-semibold text-textPrimary/90 md:text-3xl">
@@ -74,7 +74,7 @@ const JoinFlatForm = () => {
         {/* Separator */}
         <div className="flex items-center gap-3 w-full px-2">
           <div className="flex-1 h-px bg-outline/60" />
-          <span className="text-xs text-textPrimary/20 uppercase tracking-widest md:text-sm">
+          <span className="text-xs text-textPrimary/40 uppercase tracking-widest md:text-sm">
             enter code
           </span>
           <div className="flex-1 h-px bg-outline/60" />
