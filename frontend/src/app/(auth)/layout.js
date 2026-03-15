@@ -18,7 +18,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <div className={` max-w-screen bg-black`}>
+    <div className={` max-w-screen bg-background`}>
       <div className="w-screen h-screen overflow-x-hidden overflow-y-scroll">
         {children}
       </div>

@@ -103,14 +103,33 @@ class JoinFlatView(APIView):
 class ExitFlatView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def post(self,request):
-        current_user=request.user
+    def post(self, request):
+        current_user = request.user
 
-        membership=current_user.memberships.filter(is_active=True).first()
+        membership = current_user.memberships.filter(is_active=True).first()
         if not membership:
             return Response({"message": "You are not in a flat."}, status=status.HTTP_400_BAD_REQUEST)
 
-        membership.is_active=False
+        flat = membership.flat
+
+        if flat.created_by == current_user:
+            new_admin = (
+                flat.memberships
+                .filter(is_active=True)
+                .exclude(resident=current_user)
+                .select_related('resident')
+                .first()
+            )
+
+            if new_admin:
+                flat.created_by = new_admin.resident
+                flat.save()
+            else:
+                # Last person leaving — optionally delete or nullify
+                flat.created_by = None
+                flat.save()
+
+        membership.is_active = False
         membership.save()
 
         return Response({"message": "Left flat successfully."}, status=status.HTTP_200_OK)

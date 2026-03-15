@@ -1,20 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { flatStore } from "@/zustand/store";
+import React from "react";
+import { useFlatStore } from "@/zustand/store";
 import Image from "next/image";
 import FlatInfoCardSkeleton from "./FlatInfoCardSkeleton";
 
 const FlatInfoCard = () => {
-  const [flat, setFlat] = useState(null);
-
-  useEffect(() => {
-    const f = flatStore.getState().flat;
-    setFlat(f);
-
-    const unsub = flatStore.subscribe((state) => setFlat(state.flat));
-    return () => unsub();
-  }, []);
+  const flat = useFlatStore((state) => state.flat);
 
   const maxResidents = 5;
   const slots = Array.from({ length: maxResidents - 1 });

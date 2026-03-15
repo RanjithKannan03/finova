@@ -95,3 +95,20 @@ export async function joinFlat(prevState, formData) {
     flat: data.flat,
   };
 }
+
+export async function exitFlat() {
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get("access_token")?.value;
+  const csrfToken = cookieStore.get("csrftoken")?.value;
+
+  const res = await fetch(`${BACKEND_URL}/flat/exitFlat/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+      "X-CSRFToken": csrfToken || "",
+      Cookie: `access_token=${accessToken}`,
+    },
+  });
+  return redirect("/");
+}

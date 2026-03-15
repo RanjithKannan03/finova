@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import VoteRow from "./VoteRow";
 import { fmt, timeLeft } from "@/lib/date-helpers";
-import { flatStore, userStore } from "@/zustand/store";
+import { useFlatStore, useUserStore } from "@/zustand/store";
 import { TiTick, TiTimes, TiSpanner } from "react-icons/ti";
 import VoteButton from "./VoteButton";
 import MarkButton from "./MarkButton";
@@ -42,17 +42,17 @@ const RequestDetailPage = ({ data, id }) => {
   const [isAdmin, setIsAdmin] = useState(true);
 
   useEffect(() => {
-    const u = userStore.getState().user;
+    const u = useUserStore.getState().user;
     setCurrentUsername(u.username);
 
-    const f = flatStore.getState().flat;
+    const f = useFlatStore.getState().flat;
 
     setIsAdmin(f.admin === u.email);
 
-    const unsubUser = userStore.subscribe((state) =>
+    const unsubUser = useuseUserStore.subscribe((state) =>
       setCurrentUsername(state.user?.username),
     );
-    const unsubFlat = flatStore.subscribe((state) => {
+    const unsubFlat = useFlatStore.subscribe((state) => {
       setIsAdmin(state.flat?.admin === u.email);
     });
 

@@ -16,7 +16,7 @@ import {
 import Dropdown from "./Dropdown";
 import { fetchBudgets } from "@/actions/budget-actions";
 import { fetchTransactions } from "@/actions/transaction-actions";
-import { flatStore } from "@/zustand/store";
+import { useFlatStore } from "@/zustand/store";
 import TransactionSkeleton from "./TransactionSkeleton";
 import ChartSkeleton from "./ChartSkeleton";
 import TransactionRow from "./TransactionRow";
@@ -61,7 +61,7 @@ const Analytics = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const flat = flatStore.getState().flat;
+    const flat = useFlatStore.getState().flat;
     if (flat?.flatmates) {
       setFlatmates(flat.flatmates);
       setUserEmail(flat.flatmates[0]?.email ?? null);

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { userStore, flatStore } from "@/zustand/store";
+import { useUserStore, useFlatStore } from "@/zustand/store";
 import { useRouter, usePathname } from "next/navigation";
 
 const AppInitializer = ({ user, flat, children }) => {
@@ -9,9 +9,15 @@ const AppInitializer = ({ user, flat, children }) => {
   const router = useRouter();
   const path = usePathname();
 
+  // const loginUser = useUserStore((state) => state.loginUser);
+  // const setFlat = useFlatStore((state) => state.setFlat);
+
+  // loginUser(user);
+  // setFlat(flat);
+
   useEffect(() => {
-    userStore.getState().loginUser(user);
-    flatStore.getState().setFlat(flat);
+    useUserStore.getState().loginUser(user);
+    useFlatStore.getState().setFlat(flat);
 
     if (!flat && path !== "/flat-action") {
       router.replace("/flat-action");

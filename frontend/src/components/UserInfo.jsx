@@ -1,38 +1,42 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { userStore } from "@/zustand/store";
+import { useUserStore } from "@/zustand/store";
 import Image from "next/image";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+// import gsap from "gsap";
+// import { useGSAP } from "@gsap/react";
+import Link from "next/link";
 
 const UserInfo = () => {
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
 
-  useGSAP(() => {
-    const tl = gsap.timeline();
-    tl.from("#profile-pic", {
-      xPercent: 100,
-      rotate: 360,
-      ease: "power3.inOut",
-      duration: 0.7,
-      scale: 0.1,
-      opacity: 0,
-    });
-  }, [user]);
+  // useGSAP(() => {
+  //   const tl = gsap.timeline();
+  //   tl.from("#profile-pic", {
+  //     xPercent: 100,
+  //     rotate: 360,
+  //     ease: "power3.inOut",
+  //     duration: 0.7,
+  //     scale: 0.1,
+  //     opacity: 0,
+  //   });
+  // }, [user]);
 
-  useEffect(() => {
-    const u = userStore.getState().user;
-    setUser(u);
+  // useEffect(() => {
+  //   const u = useuseUserStore.getState().user;
+  //   setUser(u);
 
-    const unsub = userStore.subscribe((state) => setUser(state.user));
-    return () => unsub();
-  }, []);
+  //   const unsub = useuseUserStore.subscribe((state) => setUser(state.user));
+  //   return () => unsub();
+  // }, []);
+
+  const user = useUserStore((state) => state.user);
 
   return (
     <div className="flex w-30 md:w-40 h-9 bg-foreground border border-outline drop-shadow-2xl shadow-2xl rounded-full items-center justify-end px-2 relative">
       {user && (
-        <div
+        <Link
+          href={"/edit-profile-pic"}
           id="profile-pic"
           className="w-10 md:w-14 border border-outline aspect-square rounded-full absolute left-0 bg-gray-300"
         >
@@ -41,8 +45,9 @@ const UserInfo = () => {
             fill
             className="object-fill border-4 border-outline rounded-full"
             alt="profile-pic"
+            sizes="112"
           />
-        </div>
+        </Link>
       )}
       {user && (
         <p className="py-1 px-2 w-20 max-w-20 text-sm md:text-base md:max-w-26 md:w-26 text-end font-poppins truncate">

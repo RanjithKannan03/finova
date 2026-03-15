@@ -8,6 +8,8 @@ from django.contrib.auth import authenticate,get_user_model
 from django.middleware.csrf import get_token
 from rest_framework import status
 from rest_framework_simplejwt.exceptions import TokenError
+from rest_framework.parsers import MultiPartParser, FormParser
+
 
 User=get_user_model()
 
@@ -150,8 +152,6 @@ class MeView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-        # print("Hello")
-        # print(request.COOKIES)
         return Response({
             "isAuthenticated":True,
             "user":{
@@ -162,6 +162,27 @@ class MeView(APIView):
                 "profilePic":request.build_absolute_uri(request.user.profile_pic.url),
             }
         })
+
+
+class UpdateProfilePicView(APIView):
+    permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
+
+    def patch(self, request):
+        profile_pic = request.FILES.get("profile_pic")
+
+        if not profile_pic:
+            return Response(
+                {"message": "No image provided."},status=status.HTTP_400_BAD_REQUEST)
+
+        user = request.user
+        user.profile_pic = profile_pic
+        user.save()
+
+        return Response({
+            "message": "Profile picture updated.",
+            "profile_pic": request.build_absolute_uri(user.profile_pic.url)
+        }, status=status.HTTP_200_OK)
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class CSRFView(APIView):

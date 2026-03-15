@@ -2,7 +2,7 @@
 import React, { useRef, useActionState } from "react";
 import SubmitButton from "./SubmitButton";
 import { joinFlat } from "@/actions/flat-actions";
-import { flatStore } from "@/zustand/store";
+import { useFlatStore } from "@/zustand/store";
 import { redirect } from "next/navigation";
 
 const JoinFlatForm = () => {
@@ -12,7 +12,7 @@ const JoinFlatForm = () => {
     async (prev, formData) => {
       const res = await joinFlat(prev, formData);
       if (res?.success) {
-        flatStore.getState().setFlat(res.flat);
+        useFlatStore.getState().setFlat(res.flat);
         redirect("/");
       }
       return res;

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { Flip } from "gsap/all";
 import { useGSAP } from "@gsap/react";
-import { flatStore } from "@/zustand/store";
+import { useFlatStore } from "@/zustand/store";
 
 gsap.registerPlugin(Flip);
 
@@ -20,7 +20,7 @@ const NavLinks = ({ navLinks }) => {
   const [flat, setFlat] = useState(null);
 
   useEffect(() => {
-    const f = flatStore.getState().flat;
+    const f = useFlatStore.getState().flat;
     setFlat(f);
   });
 

@@ -1,12 +1,19 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-export const userStore = create(
+export const useUserStore = create(
   persist(
     (set, get) => ({
       user: null,
       loginUser: (user) => set({ user: user }),
       logoutUser: () => set({ user: null }),
+      updateProfilePic: (profilePic) =>
+        set((state) => ({
+          user: {
+            ...state.user,
+            profilePic,
+          },
+        })),
     }),
     {
       name: "user-storage", // name of the item in the storage (must be unique)
@@ -15,8 +22,15 @@ export const userStore = create(
   ),
 );
 
-export const flatStore = create((set, get) => ({
+export const useFlatStore = create((set, get) => ({
   flat: null,
   setFlat: (flat) => set({ flat: flat }),
   clearFlat: () => set({ flat: null }),
+}));
+
+export const useBear = create((set) => ({
+  bears: 0,
+  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
+  removeAllBears: () => set({ bears: 0 }),
+  updateBears: (newBears) => set({ bears: newBears }),
 }));

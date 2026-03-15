@@ -3,9 +3,9 @@
 import React, { useState, useActionState } from "react";
 import Link from "next/link";
 import AuthFormSubmitButton from "@/components/AuthFormSubmitButton";
-// import { useFormState } from "react-dom";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { register } from "@/actions/auth-actions";
+import Image from "next/image";
 
 const RegisterForm = () => {
   const [showPassword1, setShowPassword1] = useState(false);
@@ -15,147 +15,144 @@ const RegisterForm = () => {
   });
 
   return (
-    <div className="flex w-full lg:w-[40%] xl:w-[30%] flex-col gap-4 p-4 text-white font-montserrat">
-      <span className="text-3xl font-semibold text-center md:text-4xl lg:text-5xl">
-        Welcome
-      </span>
-
-      {state.error && (
-        <span className="w-full text-sm text-red-400 font-extralight">
-          {state.error}
+    <div className="flex w-full md:w-[50%] lg:w-[40%] xl:w-[30%] flex-col gap-6 p-6 font-poppins">
+      {/* Brand */}
+      <div className="flex flex-col items-center gap-1 mb-2">
+        <span className="text-xs uppercase tracking-[0.3em] text-textPrimary/60">
+          Join
         </span>
-      )}
+        <div className="flex items-end gap-2">
+          <div className="w-14 aspect-square relative">
+            <Image
+              src="/logo.png"
+              fill
+              sizes="100"
+              alt="logo"
+              className="object-contain"
+            />
+          </div>
+          <h1 className="text-4xl font-bold tracking-tight text-textPrimary/90 md:text-5xl">
+            Finova
+          </h1>
+        </div>
+        <span className="text-xs text-textPrimary/60 mt-1">
+          Create your account
+        </span>
+      </div>
 
-      <span className="">
-        Already have an account?
-        <span className="bg-linear-to-r from-[#AA15A2] to-[#a60de7] bg-clip-text">
-          <Link className="text-transparent " href={"/login"}>
+      {/* Card */}
+      <div className="relative card px-6 py-7 flex flex-col gap-5 overflow-hidden">
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)",
+          }}
+        />
+
+        {/* Error */}
+        {state.error && (
+          <div
+            className="px-3 py-2 rounded-xl border text-xs text-red-400/80"
+            style={{
+              background: "rgba(239,68,68,0.06)",
+              borderColor: "rgba(239,68,68,0.2)",
+            }}
+          >
+            {state.error}
+          </div>
+        )}
+
+        <form className="flex flex-col gap-4" action={formAction}>
+          {/* Email */}
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs uppercase tracking-wider text-textPrimary/60">
+              Email
+            </label>
+            <input
+              type="text"
+              name="email"
+              placeholder="you@email.com"
+              className="w-full bg-white/4 border border-outline rounded-xl px-4 py-2.5 text-sm text-textPrimary/80 placeholder:text-textPrimary/20 focus:outline-none focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)] transition-all duration-150"
+            />
+          </div>
+
+          {/* Username */}
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs uppercase tracking-wider text-textPrimary/60">
+              Username
+            </label>
+            <input
+              type="text"
+              name="username"
+              placeholder="your_username"
+              className="w-full bg-white/4 border border-outline rounded-xl px-4 py-2.5 text-sm text-textPrimary/80 placeholder:text-textPrimary/20 focus:outline-none focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)] transition-all duration-150"
+            />
+          </div>
+
+          {/* Password */}
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs uppercase tracking-wider text-textPrimary/60">
+              Password
+            </label>
+            <div className="relative">
+              <input
+                type={showPassword1 ? "text" : "password"}
+                name="password"
+                autoComplete="off"
+                placeholder="••••••••"
+                className="w-full bg-white/4 border border-outline rounded-xl px-4 pr-11 py-2.5 text-sm text-textPrimary/80 placeholder:text-textPrimary/20 focus:outline-none focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)] transition-all duration-150"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword1((p) => !p)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-textPrimary/60 hover:text-textPrimary/60 transition-colors duration-150"
+              >
+                {showPassword1 ? <IoEye size={18} /> : <IoEyeOff size={18} />}
+              </button>
+            </div>
+          </div>
+
+          {/* Confirm Password */}
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs uppercase tracking-wider text-textPrimary/60">
+              Confirm Password
+            </label>
+            <div className="relative">
+              <input
+                type={showPassword2 ? "text" : "password"}
+                name="confirmPassword"
+                autoComplete="off"
+                placeholder="••••••••"
+                className="w-full bg-white/4 border border-outline rounded-xl px-4 pr-11 py-2.5 text-sm text-textPrimary/80 placeholder:text-textPrimary/20 focus:outline-none focus:border-white/30 focus:bg-white/[0.07] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.04)] transition-all duration-150"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword2((p) => !p)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-textPrimary/60 hover:text-textPrimary/60 transition-colors duration-150"
+              >
+                {showPassword2 ? <IoEye size={18} /> : <IoEyeOff size={18} />}
+              </button>
+            </div>
+          </div>
+
+          <div className="pt-1">
+            <AuthFormSubmitButton text="Register" />
+          </div>
+        </form>
+
+        <div className="w-full h-px bg-outline/50" />
+
+        <p className="text-xs text-center text-textPrimary/60">
+          Already have an account?{" "}
+          <Link
+            href="/login"
+            className="font-medium text-textPrimary/60 hover:text-textPrimary/90 transition-colors duration-150"
+          >
             Sign in
           </Link>
-        </span>
-      </span>
-
-      <form className="flex flex-col gap-4" action={formAction}>
-        <div className="relative items-center w-full px-2 py-1 border border-gray-200 rounded-md 0 focus-within:ring-1 focus-within:ring-black">
-          <input
-            type="text"
-            id="floating_outlined_email"
-            name="email"
-            className="peer w-full focus:outline-none appearance-none bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-white focus:outline-0 dark:text-white"
-            placeholder=" "
-          />
-          <label
-            htmlFor="floating_outlined_email"
-            className="absolute inset-s-1 top-2 z-10 origin-left -translate-y-4 scale-75 transform bg-black  px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-white rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  dark:text-gray-400  peer-focus:bg-black"
-          >
-            Email
-          </label>
-        </div>
-
-        <div className="relative items-center w-full px-2 py-1 border border-gray-200 rounded-md 0 focus-within:ring-1 focus-within:ring-black">
-          <input
-            type="text"
-            id="floating_outlined_username"
-            name="username"
-            className="peer w-full focus:outline-none appearance-none bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-white focus:outline-0 dark:text-white"
-            placeholder=" "
-          />
-          <label
-            htmlFor="floating_outlined_username"
-            className="absolute inset-s-1 top-2 z-10 origin-left -translate-y-4 scale-75 transform bg-black  px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-white rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  dark:text-gray-400  peer-focus:bg-black"
-          >
-            Username
-          </label>
-        </div>
-
-        {/* <div className="relative items-center w-full px-2 py-1 border border-gray-200 rounded-md 0 focus-within:ring-1 focus-within:ring-black">
-          <input
-            type="text"
-            id="floating_outlined_username"
-            name="firstname"
-            className="peer w-full focus:outline-none appearance-none bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-white focus:outline-0 dark:text-white"
-            placeholder=" "
-          />
-          <label
-            htmlFor="floating_outlined_username"
-            className="absolute inset-s-1 top-2 z-10 origin-left -translate-y-4 scale-75 transform bg-black  px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-white rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  dark:text-gray-400  peer-focus:bg-black"
-          >
-            Firstname
-          </label>
-        </div>
-
-        <div className="relative items-center w-full px-2 py-1 border border-gray-200 rounded-md 0 focus-within:ring-1 focus-within:ring-black">
-          <input
-            type="text"
-            id="floating_outlined_username"
-            name="lastname"
-            className="peer w-full focus:outline-none appearance-none bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-white focus:outline-0 dark:text-white"
-            placeholder=" "
-          />
-          <label
-            htmlFor="floating_outlined_username"
-            className="absolute inset-s-1 top-2 z-10 origin-left -translate-y-4 scale-75 transform bg-black  px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-white rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  dark:text-gray-400  peer-focus:bg-black"
-          >
-            Lastname
-          </label>
-        </div> */}
-
-        <div className="relative flex items-center w-full px-2 py-1 border border-gray-200 rounded-md 0 focus-within:ring-1 focus-within:ring-black">
-          <input
-            type={`${showPassword1 ? "text" : "password"}`}
-            name="password"
-            autoComplete="off"
-            id="floating_outlined_pass"
-            className="peer flex-1 focus:outline-none appearance-none bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-white focus:outline-0 dark:text-white"
-            placeholder=" "
-          />
-          <button
-            type="button"
-            onClick={() => {
-              setShowPassword1((prev) => {
-                return !prev;
-              });
-            }}
-          >
-            {showPassword1 ? <IoEye size={25} /> : <IoEyeOff size={25} />}
-          </button>
-          <label
-            htmlFor="floating_outlined_pass"
-            className="absolute inset-s-1 top-2 z-10 origin-left -translate-y-4 scale-75 transform bg-black  px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-white rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  dark:text-gray-400  peer-focus:bg-black"
-          >
-            Password
-          </label>
-        </div>
-
-        <div className="relative flex items-center w-full px-2 py-1 border border-gray-200 rounded-md 0 focus-within:ring-1 focus-within:ring-black">
-          <input
-            type={`${showPassword2 ? "text" : "password"}`}
-            name="confirmPassword"
-            autoComplete="off"
-            id="floating_outlined_pass_confirm"
-            className="peer flex-1 focus:outline-none appearance-none bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-white focus:outline-0 dark:text-white"
-            placeholder=" "
-          />
-          <button
-            type="button"
-            onClick={() => {
-              setShowPassword2((prev) => {
-                return !prev;
-              });
-            }}
-          >
-            {showPassword2 ? <IoEye size={25} /> : <IoEyeOff size={25} />}
-          </button>
-          <label
-            htmlFor="floating_outlined_pass_confirm"
-            className="absolute inset-s-1 top-2 z-10 origin-left -translate-y-4 scale-75 transform bg-black  px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-white rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4  dark:text-gray-400  peer-focus:bg-black"
-          >
-            Confirm Password
-          </label>
-        </div>
-
-        <AuthFormSubmitButton text="Register" />
-      </form>
+        </p>
+      </div>
     </div>
   );
 };

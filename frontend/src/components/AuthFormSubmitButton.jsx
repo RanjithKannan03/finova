@@ -6,19 +6,25 @@ import Loading from "./Loading";
 
 const AuthFormSubmitButton = ({ text }) => {
   const status = useFormStatus();
+
   return (
-    <div className="w-full p-3 text-white text-xl font-light transition-all bg-linear-to-r from-[#AA15A2] to-[#800CB1] rounded-lg hover:font-normal">
+    <button
+      id="login-btn"
+      type="submit"
+      disabled={status.pending}
+      className="relative w-full px-4 py-2.5 rounded-xl text-sm font-medium bg-white/8 border border-outline text-textPrimary/70 hover:bg-white/12 hover:text-textPrimary/90 active:scale-[0.98] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+    >
       {status.pending ? (
-        <div className="relative w-full">
+        <>
           <span className="opacity-0">{text}</span>
-          <Loading />
-        </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Loading />
+          </div>
+        </>
       ) : (
-        <button id="login-bth" className="w-full">
-          {text}
-        </button>
+        text
       )}
-    </div>
+    </button>
   );
 };
 

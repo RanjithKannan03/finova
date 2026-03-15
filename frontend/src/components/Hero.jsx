@@ -1,5 +1,5 @@
 import React from "react";
-// import { flatStore } from "@/zustand/store";
+// import { useFlatStore } from "@/zustand/store";
 // import { redirect } from "next/navigation";
 import RecentTransactions from "./RecentTransactions";
 import FlatInfoCard from "./FlatInfoCard";

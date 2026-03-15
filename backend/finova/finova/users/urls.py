@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import LoginView,LogoutView,MeView,RegisterView,RefreshView,CSRFView
+from .views import LoginView,LogoutView,MeView,RegisterView,RefreshView,CSRFView, UpdateProfilePicView
 
 urlpatterns=[
     path("login/", LoginView.as_view(),name="login"),
@@ -8,4 +8,5 @@ urlpatterns=[
     path("csrf/", CSRFView.as_view(),name="csrf"),
     path("register/", RegisterView.as_view(),name="register"),
     path("logout/", LogoutView.as_view(),name="logout"),
+    path("update-profile-pic/", UpdateProfilePicView.as_view(),name="update_profile_pic"),
 ]
