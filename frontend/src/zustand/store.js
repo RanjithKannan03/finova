@@ -27,10 +27,3 @@ export const useFlatStore = create((set, get) => ({
   setFlat: (flat) => set({ flat: flat }),
   clearFlat: () => set({ flat: null }),
 }));
-
-export const useBear = create((set) => ({
-  bears: 0,
-  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-  removeAllBears: () => set({ bears: 0 }),
-  updateBears: (newBears) => set({ bears: newBears }),
-}));
