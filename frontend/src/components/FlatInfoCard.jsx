@@ -110,7 +110,7 @@ const FlatInfoCard = () => {
                 )}
                 {mate ? (
                   <>
-                    <div className="w-6 relative aspect-square rounded-lg bg-white/[0.07] border border-outline flex items-center justify-center shrink-0">
+                    <div className="w-7 lg:w-8 relative aspect-square rounded-lg bg-white/[0.07] border border-outline flex items-center justify-center shrink-0">
                       {/* <span className="text-[10px] font-semibold text-textPrimary/60 uppercase">
                         {mate.username[0]}
                       </span> */}

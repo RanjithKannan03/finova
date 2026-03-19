@@ -3,8 +3,7 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { editProfilePic } from "@/actions/user-actions";
-import { useuseUserStore } from "@/zustand/store";
-import { useRouter } from "next/navigation";
+import { useUserStore } from "@/zustand/store";
 import Loading from "./Loading";
 
 const ProfilePicForm = () => {
@@ -13,9 +12,7 @@ const ProfilePicForm = () => {
   const [error, setError] = useState(null);
   const inputRef = useRef(null);
   const formRef = useRef(null);
-  const updateProfilePicStore = useuseUserStore(
-    (state) => state.updateProfilePic,
-  );
+  const updateProfilePicStore = useUserStore((state) => state.updateProfilePic);
 
   async function onSubmit(e) {
     e.preventDefault();

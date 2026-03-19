@@ -49,7 +49,7 @@ const RequestDetailPage = ({ data, id }) => {
 
     setIsAdmin(f.admin === u.email);
 
-    const unsubUser = useuseUserStore.subscribe((state) =>
+    const unsubUser = useUserStore.subscribe((state) =>
       setCurrentUsername(state.user?.username),
     );
     const unsubFlat = useFlatStore.subscribe((state) => {

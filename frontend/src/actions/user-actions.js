@@ -1,7 +1,6 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { useuseUserStore } from "@/zustand/store";
 
 const BACKEND_URL = process.env.BACKEND_URL;
 
