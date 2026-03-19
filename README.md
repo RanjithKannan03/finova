@@ -25,6 +25,13 @@ Install the required packages:
 bun i
 ```
 
+Create a `.env.local` file in the `frontend` directory:
+
+```dotenv
+BACKEND_URL=http://127.0.0.1:8000
+ENV=local
+```
+
 Run the development server:
 
 ```bash
