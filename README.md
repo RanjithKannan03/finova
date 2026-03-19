@@ -3,7 +3,6 @@
 **Finova** is a web platform for apartment residents to streamline shared spending and budget management. It allows flatmates to record shared expenses, view financial analytics, monitor remaining budget, and make financial decisions through a democratic voting system.
 
 - 🔗 **Live App**: [finova-frontend.vercel.app](https://finova-frontend.vercel.app)
-- 📁 **Repository**: [github.com/RanjithKannan03/finova](https://github.com/RanjithKannan03/finova.git)
 
 There are two directories — `frontend` and `backend`.
 
